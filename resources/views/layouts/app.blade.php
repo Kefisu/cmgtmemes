@@ -46,30 +46,15 @@
 
     <section class="banner-bg"
              style="background-image: url('https://cmgt.hr.nl:8000/public/uploads/83d1ad2a-86d7-4963-8ca6-d907929dce1e.png');">
-        <svg viewBox="0 0 1000 70" class="poly" width="1000vw" height="70px" preserveAspectRatio="none">
-            <polygon points="{{ rand(100, 900) }} 0 1000 70 0 70" class="red-fill"></polygon>
+        <svg viewBox="0 0 1000 70" width="1000vw" height="70px" preserveAspectRatio="none" class="poly">
+            <polygon points="{{ rand(200, 900) }} 0 1000 70 0 70" class="red-fill"></polygon>
         </svg>
         <div class="banner">
             <h1>MEMES</h1>
             <button>Wijze woorden van Leonardo</button>
         </div>
     </section>
-    <section class="main-bg">
-        <main>
-            <p class="mt-3 mb-3">Welkom bij Creative Media and Game Technologies. Op deze website vind je een selectie van de beste memes
-                en grappen over het studeren bij CMGT in Rotterdam.</p>
-            <h3>Top memes</h3>
-            <p class="mt-3 mb-3">Memes in de spotlight</p>
-            <section class="spotlight-bg">
-                @yield('content')
-            </section>
-            <p>Bekijk hier alle uigelichte memes</p>
-            <p>Of zoek in alle memes via tags:</p>
-        </main>
-    </section>
-    <svg width="1000px" height="70px" viewBox="0 0 1000 70" preserveAspectRatio="none" class="poly bg-red">
-        <polygon points="0 0 {{ rand(200, 850) }} 30 1000 0 1000 70 0 70" class="light-fill"></polygon>
-    </svg>
+    @yield('content')
 </div>
 </body>
 </html>

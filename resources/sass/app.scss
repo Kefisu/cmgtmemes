@@ -156,3 +156,45 @@ svg {
     }
 }
 
+.singlecase {
+    height: 350px;
+    font-size: 1rem;
+    transition: all .4s ease-out;
+    cursor: pointer;
+    text-decoration: none;
+    flex: 0 1 46%;
+    background-color: #fff;
+
+    .thumbnail {
+        height: 70%;
+        background: no-repeat 50%;
+        -webkit-background-size: cover;
+        background-size: cover;
+        transition: all .6s ease-out;
+
+        .title {
+            color: #FFF;
+            height: 100%;
+            padding: 12px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            background: url('https://cmgtmemes.test/images/overlay.svg') no-repeat bottom;
+            -webkit-background-size: 100% 40%;
+            background-size: 100% 40%;
+        }
+    }
+
+
+    .description {
+        padding: 12px 20px;
+        height: 3%;
+        color: #000;
+        background-color: #fff;
+    }
+}
+
+.singlecase:hover {
+    box-shadow: 0 0 36px 4px rgba(0,0,0,.33);
+    transform: scale(1.06);
+}
