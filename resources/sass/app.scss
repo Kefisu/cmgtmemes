@@ -1,14 +1,158 @@
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400');
 
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import 'mdb';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-size: 17px;
+    scroll-behavior: smooth;
+    background-color: #F0F0F0;
+    font-family: 'Open Sans', sans-serif;
 }
+
+h3 {
+    font-weight: 300;
+    font-size: 2em;
+}
+
+.bg-red {
+    background-color: #cc0133;
+}
+
+.poly {
+    width: 100vw;
+    height: 70px;
+
+    .red-fill {
+        fill: #cc0133;
+    }
+
+    .light-fill {
+        fill: #f0f0f0;
+    }
+}
+
+svg {
+    overflow: hidden;
+    vertical-align: middle;
+
+}
+
+#nav {
+    position: absolute;
+    display: flex;
+    z-index: 3;
+    color: #fff;
+
+
+    @media (min-width: 800px) {
+        width: 800px;
+        margin: 20px calc(50% - 400px);
+    }
+
+    @media (max-width: 800px) {
+        width: calc(100% - 40px);
+        margin: 20px;
+
+        h3 {
+            font-size: 1.5em;
+        }
+
+        .login span {
+            display: none;
+        }
+    }
+
+
+    .login {
+        cursor: pointer;
+        width: 110px;
+        height: 30px;
+        text-align: right;
+        padding-right: 30px;
+        padding-top: 2px;
+        background-image: url('http://cmgtmemes.test/images/login.svg');
+        background-repeat: no-repeat;
+        background-position-x: 100%;
+    }
+}
+.banner-bg {
+
+    min-height: 580px;
+    display: flex;
+    flex-direction: column-reverse;
+    background-repeat: no-repeat, no-repeat;
+    background-position: 50% 50%;
+    background-size: 100% 100%,cover;
+
+
+    .banner {
+        border: 1px solid transparent;
+        width: 100%;
+        max-width: 800px;
+        color: #fff;
+        margin: 0 auto;
+
+        @media (max-width: 850px) {
+                padding-left: 20px;
+                padding-right: 20px;
+        }
+
+        h1 {
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            font-size: 4em;
+        }
+
+        button {
+            color: #545454;
+            font-size: 1em;
+            background: #fff;
+            padding: 10px 24px;
+            text-decoration: none;
+            border: 0;
+            cursor: pointer;
+
+        }
+
+        button:hover {
+            background: #cc0133;
+            text-decoration: none;
+            color: #fff;
+        }
+    }
+}
+
+
+.main-bg {
+    background-color: #cc0133;
+
+    main {
+
+        color: #FFF;
+        border: 1px solid transparent;
+        max-width: 800px;
+        margin: 0 auto;
+
+        @media (max-width: 850px) {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        p {
+            line-height: 1.6;
+            font-weight: 400;
+        }
+    }
+}
+
