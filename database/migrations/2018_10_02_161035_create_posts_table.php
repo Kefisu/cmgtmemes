@@ -15,7 +15,7 @@ class CreatePostsTable extends Migration
     {
 
         Schema::dropIfExists('posts');
-         
+
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
