@@ -1,14 +1,14 @@
-
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400');
-
 // Variables
 @import 'variables';
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-@import 'mdb';
+
+html {
+    background-color: #999;
+}
 
 body {
     margin: 0;
@@ -37,6 +37,10 @@ h3 {
         fill: #cc0133;
     }
 
+    .white-fill {
+        fill: #F0F0F0;
+    }
+
     .light-fill {
         fill: #f0f0f0;
     }
@@ -53,7 +57,6 @@ svg {
     display: flex;
     z-index: 3;
     color: #fff;
-
 
     @media (min-width: 800px) {
         width: 800px;
@@ -73,7 +76,6 @@ svg {
         }
     }
 
-
     .login {
         cursor: pointer;
         width: 110px;
@@ -86,6 +88,7 @@ svg {
         background-position-x: 100%;
     }
 }
+
 .banner-bg {
 
     min-height: 580px;
@@ -93,8 +96,7 @@ svg {
     flex-direction: column-reverse;
     background-repeat: no-repeat, no-repeat;
     background-position: 50% 50%;
-    background-size: 100% 100%,cover;
-
+    background-size: 100% 100%, cover;
 
     .banner {
         border: 1px solid transparent;
@@ -104,8 +106,8 @@ svg {
         margin: 0 auto;
 
         @media (max-width: 850px) {
-                padding-left: 20px;
-                padding-right: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
         }
 
         h1 {
@@ -132,7 +134,6 @@ svg {
         }
     }
 }
-
 
 .main-bg {
     background-color: #cc0133;
@@ -185,16 +186,150 @@ svg {
         }
     }
 
-
     .description {
         padding: 12px 20px;
         height: 3%;
         color: #000;
         background-color: #fff;
     }
+
 }
 
 .singlecase:hover {
-    box-shadow: 0 0 36px 4px rgba(0,0,0,.33);
+    box-shadow: 0 0 36px 4px rgba(0, 0, 0, .33);
     transform: scale(1.06);
+}
+
+.tag {
+    display: inline-block;
+    background-color: #cc0133;
+    color: #fff;
+    font-size: .75em;
+    font-weight: bolder;
+    padding: 4px 10px;
+    -webkit-border-radius: 22px;
+    -moz-border-radius: 22px;
+    border-radius: 22px;
+    cursor: pointer;
+    margin-top: 4px;
+    margin-right: 5px;
+
+    a {
+        text-decoration: none;
+        color: #fff;
+    }
+}
+
+.tag.overview {
+    background-color: #fff;
+
+    a {
+        color: #cc0133;
+    }
+}
+
+.browser-bg {
+
+    background-color: #f0f0f0;
+
+    .title {
+        max-width: 800px;
+        margin: 10px auto;
+        margin-bottom: 30px;
+    }
+
+    .browser {
+        max-width: 800px;
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+#lower-half {
+
+    .verticalspacer {
+        height: 60px;
+    }
+
+    .removespace {
+        height: 70px;
+
+        svg {
+            width: 100vw;
+            height: 70px;
+
+            .medium {
+                fill: #ccc;
+            }
+        }
+    }
+
+    .main-bg {
+        background-color: #ccc;
+        min-height: 200px;
+        color: #fff;
+
+        .main {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .item a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+    }
+
+    .footer-bg.dark {
+        background-color: #999;
+
+        .bg-medium {
+            background-color: #ccc;
+        }
+        svg {
+
+            width: 100vw;
+            height: 70px;
+
+            .dark {
+                fill: #999;
+            }
+        }
+
+        .footer {
+            max-width: 1000px;
+            margin: 0 auto;
+            color: #fff;
+            display: flex;
+            font-size: 1.2em;
+
+            .item {
+                flex: 0 1 auto;
+            }
+
+            .item:not(:first-child) {
+                margin-left: 20px;
+            }
+        }
+
+        .footer.links {
+            margin-top: 30px;
+            margin-bottom: 100px;
+        }
+
+        .footer.sub {
+            margin-bottom: 30px;
+
+            .copyright {
+                color: hsla(0,0%,100%,.8);
+                font-size: .8em;
+            }
+
+            .spacer {
+                flex: 1 0 auto;
+            }
+        }
+    }
 }

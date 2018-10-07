@@ -10,9 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route to homepage
+// Index route
 Route::get('/', 'PagesController@index')->name('homepage');
-
+Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Tag routes
+Route::get('/tag/{slug}', 'TagsController@show');

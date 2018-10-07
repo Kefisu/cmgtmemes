@@ -1,51 +1,96 @@
-@extends('layouts.app')
+<!doctype html>
+<html lang="{{ app()->getLocale() }}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('content')
+        <title>Laravel</title>
 
-    <section class="main-bg">
-        <main>
-            <p class="mt-3 mb-3">Welkom bij Creative Media and Game Technologies. Op deze website vind je een selectie
-                van de beste memes
-                en grappen over het studeren bij CMGT in Rotterdam.</p>
-            <h3>Top memes</h3>
-            <p class="mt-3 mb-3">Memes in de spotlight</p>
-            <section class="spotlight-bg">
-                <div class="row">
-                    <div class="col-md-6 col-sm-12">
-                        <div class="singlecase">
-                            <div class="thumbnail"
-                                 style="background-image: url('https://cmgt.hr.nl:8000/public/uploads/c8a53880-99cd-4aec-9443-342aa80cbabd.jpeg')">
-                                <div class="title">
-                                    <h3>Leonardo DiCaprio's wijze les</h3>
-                                </div>
-                            </div>
-                            <div class="description">
-                                Implementatie van virtual reality op het XVR platform
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <div class="singlecase">
-                            <div class="thumbnail"
-                                 style="background-image: url('https://cmgt.hr.nl:8000/public/uploads/c8a53880-99cd-4aec-9443-342aa80cbabd.jpeg')">
-                                <div class="title">
-                                    <h3>Leonardo DiCaprio's wijze les</h3>
-                                </div>
-                            </div>
-                            <div class="description">
-                                Implementatie van virtual reality op het XVR platform
-                            </div>
-                        </div>
-                    </div>
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+
+        <!-- Styles -->
+        <style>
+            html, body {
+                background-color: #fff;
+                color: #636b6f;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 200;
+                height: 100vh;
+                margin: 0;
+            }
+
+            .full-height {
+                height: 100vh;
+            }
+
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+
+            .position-ref {
+                position: relative;
+            }
+
+            .top-right {
+                position: absolute;
+                right: 10px;
+                top: 18px;
+            }
+
+            .content {
+                text-align: center;
+            }
+
+            .title {
+                font-size: 84px;
+            }
+
+            .links > a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 12px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            .m-b-md {
+                margin-bottom: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="flex-center position-ref full-height">
+            @if (Route::has('login'))
+                <div class="top-right links">
+                    @auth
+                        <a href="{{ url('/home') }}">Home</a>
+                    @else
+                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('register') }}">Register</a>
+                    @endauth
                 </div>
-            </section>
-            <p>Bekijk hier alle uigelichte memes</p>
-            {{--{{ $posts->links() }}--}}
-            <p>Of zoek in alle memes via tags:</p>
-        </main>
-    </section>
-    <svg width="1000px" height="70px" viewBox="0 0 1000 70" preserveAspectRatio="none" class="poly bg-red">
-        <polygon points="0 0 {{ rand(200, 850) }} 30 1000 0 1000 70 0 70" class="light-fill"></polygon>
-    </svg>
+            @endif
 
-@endsection
+            <div class="content">
+                <div class="title m-b-md">
+                    Laravel
+                </div>
+
+                <div class="links">
+                    <a href="https://laravel.com/docs">Documentation</a>
+                    <a href="https://laracasts.com">Laracasts</a>
+                    <a href="https://laravel-news.com">News</a>
+                    <a href="https://nova.laravel.com">Nova</a>
+                    <a href="https://forge.laravel.com">Forge</a>
+                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
