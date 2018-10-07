@@ -42,6 +42,7 @@ class TagsController extends Controller
             'posts' => Tag::where('name', $tag)->paginate(12)->load('posts')
         ];
 
+//        return $data['posts']->first()->posts;
         return view('app.tag.show')->with($data);
     }
 
