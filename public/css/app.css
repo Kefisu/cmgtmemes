@@ -10553,7 +10553,7 @@ svg {
   text-align: right;
   padding-right: 30px;
   padding-top: 2px;
-  background-image: url("https://cmgtmemes.nl/images/login.svg");
+  background-image: url("https://cmgt.hr.nl/./images/login.svg");
   background-repeat: no-repeat;
   background-position-x: 100%;
 }
@@ -10593,7 +10593,7 @@ svg {
   font-size: 4em;
 }
 
-.banner-bg .banner button {
+button {
   color: #545454;
   font-size: 1em;
   background: #fff;
@@ -10603,7 +10603,7 @@ svg {
   cursor: pointer;
 }
 
-.banner-bg .banner button:hover {
+button:hover {
   background: #cc0133;
   text-decoration: none;
   color: #fff;
@@ -10727,6 +10727,11 @@ svg {
   margin: 0 auto;
 }
 
+.browser-bg .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 #lower-half .verticalspacer {
   height: 60px;
 }
@@ -10816,5 +10821,23 @@ svg {
   -webkit-box-flex: 1;
       -ms-flex: 1 0 auto;
           flex: 1 0 auto;
+}
+
+.explanation {
+  font-size: .9em;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.required {
+  border: 1px solid red;
+}
+
+label {
+  margin: 0;
 }
 

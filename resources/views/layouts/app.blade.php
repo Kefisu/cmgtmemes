@@ -24,7 +24,7 @@
     <div class="container p-0" id="nav">
         <a href="{{ route('homepage') }}">
             <div class="logo">
-                <img src="https://cmgtmemes.nl/images/hr_logo.svg " alt="">
+                <img src="https://cmgt.hr.nl/./images/hr_logo.svg " alt="">
                 <h3 class="white-text mt-2">CREATIVE MEDIA AND GAME TECHNOLOGIES</h3>
             </div>
         </a>
@@ -47,7 +47,7 @@
     <section class="banner-bg"
              style="background-image: url('https://cmgt.hr.nl:8000/public/uploads/83d1ad2a-86d7-4963-8ca6-d907929dce1e.png');">
         <svg viewBox="0 0 1000 70" width="1000vw" height="70px" preserveAspectRatio="none" class="poly">
-            <polygon points="{{ rand(200, 900) }} 0 1000 70 0 70" class="{{ $header }}-fill"></polygon>
+            <polygon points="{{ rand(200, 900) }} 0 1000 70 0 70" class="@if(isset($header)) {{ $header . '-fill' }} @else {{ 'white-fill' }} @endif"></polygon>
         </svg>
         <div class="banner">
             <h1>MEMES</h1>
@@ -71,7 +71,7 @@
                 <div class="item"><a href="">Manifesto</a></div>
                 <div class="item"><a href="">Alumni</a></div>
                 <div class="item"><a href="">Instagram</a></div>
-                <div class="item"><a href="">Upload meme</a></div>
+                <div class="item"><a href="{{ route('upload') }}">Upload meme</a></div>
             </div>
             <div class="verticalspacer">
             </div>
