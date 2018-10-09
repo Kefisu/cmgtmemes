@@ -11,8 +11,7 @@
         <div class="spacer">
         </div>
         <div class="container p-0">
-            {{--{!! Form::open !!}--}}
-            <form action="" method="post">
+            {!! Form::open(['action' => 'PostsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                 <div class="form-group">
                     <label for="title">Titel</label>
                     <br/>
@@ -28,7 +27,7 @@
                 <div class="form-group">
                     <label for="year">Jaar</label>
                     <br/>
-                    <input type="number" id="year" class="full-width required" min="1" max="4" required>
+                    <input type="number" id="year" name="year" class="full-width required" min="1" max="4" required>
                 </div>
                 <div class="form-group">
                     <label for="tagline">Tagline</label>
@@ -52,15 +51,15 @@
                     <span class="explanation">Upload hier je fantastische meme. Let op dat de meme een afbeelding (jpg, png) of gif'je is. Andere bestanden worden (nog) niet ondersteund.</span>
                     <br/>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input required" id="customFile" accept=".png, .jpg, .jpeg, .gif">
-                        <label class="custom-file-label" for="customFile">Choose file</label>
+                        <input type="file" class="custom-file-input required" name="file" id="file">
+                        <label class="custom-file-label" for="file">Choose file</label>
                     </div>
                 </div>
                 <div class="form-group">
                     <p>Heb je alles goed ingevuld? Klik dan op de knop om je meme te uploaden.</p>
                     <button type="submit" name="submit">Upload</button>
                 </div>
-            </form>
+            {!! Form::close() !!}
         </div>
     </section>
 

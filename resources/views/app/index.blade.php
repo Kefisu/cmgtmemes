@@ -11,18 +11,18 @@
             <p class="mt-3 mb-3">Memes in de spotlight</p>
             <section class="spotlight-bg">
                 <div class="row">
-                    @foreach($posts->slice(0,3) as $post)
+                    @foreach($posts as $post)
                         @if($post->featured != 1) @continue @endif
                         <div class="col-md-6 col-sm-12 mb-3">
                             <article class="singlecase">
                                 <div class="thumbnail"
-                                     style="background-image: url('https://cmgt.hr.nl:8000/public/uploads/c8a53880-99cd-4aec-9443-342aa80cbabd.jpeg')">
+                                     style="background-image: url('{{ asset('storage/uploads/' . $post->meme_image) }}')">
                                     <div class="title">
                                         <h3>{{ $post->title }}</h3>
                                     </div>
                                 </div>
                                 <div class="description">
-                                    {{ Str::words($post->body, 10) }}
+                                    {{ $post->tagline }}
                                     <br>
                                     @foreach($post->tags as $tag)
                                         <div class="tag">
@@ -59,13 +59,13 @@
                     <div class="col-md-6 col-sm-12 mb-3">
                         <article class="singlecase">
                             <div class="thumbnail"
-                                 style="background-image: url('https://cmgt.hr.nl:8000/public/uploads/c8a53880-99cd-4aec-9443-342aa80cbabd.jpeg')">
+                                 style="background-image: url('{{ asset('storage/uploads/' . $post->meme_image) }}')">
                                 <div class="title">
                                     <h3>{{ $post->title }}</h3>
                                 </div>
                             </div>
                             <div class="description">
-                                {{ Str::words($post->body, 10) }}
+                                {{ $post->tagline }}
                                 <br>
                                 @foreach($post->tags as $tag)
                                     <div class="tag">

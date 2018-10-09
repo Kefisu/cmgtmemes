@@ -18,6 +18,7 @@ Auth::routes();
 // Post routes
 Route::get('/post/{slug}', 'PostsController@show')->name('showPost');
 Route::get('/upload', 'PostsController@create')->name('upload');
+Route::resource('posts', 'PostsController');
 
 // Tag routes
 Route::get('/tag/{slug}', 'TagsController@show');
