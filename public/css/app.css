@@ -10732,6 +10732,18 @@ button:hover {
   margin: 0 auto;
 }
 
+@media (max-width: 800px) {
+  .browser-bg .title,
+  .browser-bg .browser {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .browser-bg .container {
+    margin: 0 20px 0 20px;
+  }
+}
+
 #lower-half .verticalspacer {
   height: 60px;
 }
@@ -10764,6 +10776,12 @@ button:hover {
 #lower-half .main-bg .item a {
   color: #fff;
   text-decoration: none;
+}
+
+@media (max-width: 800px) {
+  #lower-half .main-bg .main {
+    margin: 0 20px 0 20px;
+  }
 }
 
 #lower-half .footer-bg.dark {
@@ -10823,6 +10841,28 @@ button:hover {
           flex: 1 0 auto;
 }
 
+@media (max-width: 800px) {
+  #lower-half .footer-bg.dark .footer.links,
+  #lower-half .footer-bg.dark .footer.sub {
+    margin: 0 20px 0 20px;
+  }
+
+  #lower-half .footer-bg.dark .footer.links .item,
+  #lower-half .footer-bg.dark .footer.sub .item {
+    margin-left: 0;
+  }
+
+  #lower-half .footer-bg.dark .footer {
+    font-size: 1.2em;
+  }
+
+  #lower-half .footer-bg.dark .footer,
+  #lower-half .footer-bg.dark .copyright {
+    padding: 0 20px 0 20px;
+    display: block;
+  }
+}
+
 .explanation {
   font-size: .9em;
   font-style: italic;
@@ -10833,11 +10873,23 @@ button:hover {
   width: 100%;
 }
 
+@media (max-width: 800px) {
+  .full-width {
+    width: 80%;
+  }
+}
+
 .required {
   border: 1px solid red;
 }
 
 label {
   margin: 0;
+}
+
+@media (max-width: 800px) {
+  .custom-file {
+    width: 80%;
+  }
 }
 

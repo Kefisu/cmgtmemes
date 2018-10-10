@@ -249,6 +249,18 @@ button:hover {
         max-width: 800px;
         margin: 0 auto;
     }
+
+    @media (max-width: 800px) {
+        .title,
+        .browser {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .container {
+            margin: 0 20px 0 20px;
+        }
+    }
 }
 
 #lower-half {
@@ -284,6 +296,12 @@ button:hover {
         .item a {
             color: #fff;
             text-decoration: none;
+        }
+
+        @media (max-width: 800px) {
+            .main {
+                margin: 0 20px 0 20px;
+            }
         }
 
     }
@@ -337,6 +355,26 @@ button:hover {
                 flex: 1 0 auto;
             }
         }
+
+        @media(max-width: 800px) {
+
+            .footer.links,
+            .footer.sub {
+                margin: 0 20px 0 20px;
+
+                .item {
+                    margin-left: 0;
+                }
+            }
+            .footer {
+                font-size: 1.2em;
+            }
+
+            .footer, .copyright {
+                padding: 0 20px 0 20px;
+                display: block;
+            }
+        }
     }
 }
 
@@ -348,6 +386,10 @@ button:hover {
 
 .full-width {
     width: 100%;
+
+    @media(max-width: 800px) {
+        width: 80%;
+    }
 }
 
 .required {
@@ -356,4 +398,11 @@ button:hover {
 
 label {
     margin: 0;
+}
+
+.custom-file {
+
+    @media(max-width: 800px) {
+        width: 80%;
+    }
 }
