@@ -11,6 +11,7 @@ class PostsController extends Controller
     {
         $this->middleware('auth', ['except' => ['show']]);
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -31,7 +32,7 @@ class PostsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -61,7 +62,7 @@ class PostsController extends Controller
             // Get extension
             $extension = $request->file('file')->getClientOriginalExtension();
             // Filename to store
-            $fileNameToStore = $filename. '_' .time(). '.' .$extension;
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
             // Upload image
             $path = $request->file('file')->storeAs('public/uploads', $fileNameToStore);
         } else {
@@ -85,22 +86,24 @@ class PostsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($title, Request $request)
     {
         $data = [
-                'header' => 'white',
-                'post' => Post::where('slug', $title)
-            ];
+            'post' => Post::where('slug', $title)->first()->load('tags'),
+            'header' => 'white',
+        ];
+        $data['header_image'] = $data['post']->meme_image;
 
         return view('app.posts.show')->with($data);
     }
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($title)
@@ -115,8 +118,8 @@ class PostsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -127,7 +130,7 @@ class PostsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

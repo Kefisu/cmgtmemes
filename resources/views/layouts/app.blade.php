@@ -17,6 +17,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Font Awsome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 </head>
 <body>
 <div id="app">
@@ -45,7 +48,9 @@
     <!-- ./Navigation -->
 
     <section class="banner-bg"
-             style="background-image: url('https://cmgt.hr.nl:8000/public/uploads/83d1ad2a-86d7-4963-8ca6-d907929dce1e.png');">
+             style="background-image: url(@if(isset($header_image)) '{{ asset('/storage/uploads/' . $header_image) }}'
+             @else 'https://cmgt.hr.nl:8000/public/uploads/83d1ad2a-86d7-4963-8ca6-d907929dce1e.png'
+             @endif);">
         <svg viewBox="0 0 1000 70" width="1000vw" height="70px" preserveAspectRatio="none" class="poly">
             <polygon points="{{ rand(200, 900) }} 0 1000 70 0 70"
                      class="@if(isset($header)) {{ $header . '-fill' }} @else {{ 'white-fill' }} @endif"></polygon>

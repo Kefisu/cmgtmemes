@@ -29,6 +29,11 @@ h3 {
     font-size: 2em;
 }
 
+h4 {
+    font-weight: 300;
+    font-size: 1.6em;
+}
+
 .bg-red {
     background-color: #cc0133;
 }
@@ -409,4 +414,8 @@ label {
     @media(max-width: 800px) {
         width: 80%;
     }
+}
+
+.responsive-image {
+    width: 100%;
 }
