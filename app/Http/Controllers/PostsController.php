@@ -16,8 +16,10 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+
+        $request->user()->authorizeRoles(['user', 'admin']);
 
         $data = [
             'header' => 'white'
@@ -74,6 +76,7 @@ class PostsController extends Controller
         $post->description = $request->input('description');
         $post->meme_image = $fileNameToStore;
         $post->user_id = auth()->user()->id;
+        $post->slug = strtolower(str_replace(' ', '-', $request->input('title')));
         $post->save();
 
         return redirect('/upload')->with('success', 'Post Created');
@@ -85,20 +88,28 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($title, Request $request)
     {
-        //
-    }
+        $data = [
+                'header' => 'white',
+                'post' => Post::where('slug', $title)
+            ];
 
+        return view('app.posts.show')->with($data);
+    }
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($title)
     {
-        //
+        $data = [
+
+        ];
+
+        return view()->with();
     }
 
     /**
