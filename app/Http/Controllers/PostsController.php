@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Post;
+use App\Tag;
 
 class PostsController extends Controller
 {
@@ -24,7 +25,8 @@ class PostsController extends Controller
         $request->user()->authorizeRoles(['user', 'admin']);
 
         $data = [
-            'header' => 'white'
+            'header' => 'white',
+            'tags' => Tag::all()
         ];
 
         return view('app.posts.create')->with($data);
@@ -38,6 +40,7 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
             'title' => 'required',
             'author' => 'nullable',
@@ -81,9 +84,9 @@ class PostsController extends Controller
         $post->slug = strtolower(str_replace(' ', '-', $request->input('title')));
         $post->save();
 
-//        foreach () :
-//
-//        endforeach;
+        foreach ($request->input('tags') as $tag) :
+            $post->tags()->attach($tag);
+        endforeach;
 
         return redirect('/post/' . $post->slug)->with('success', 'Meme uploaded');
     }
@@ -176,7 +179,7 @@ class PostsController extends Controller
             $post->featured = 0;
             $post->save();
 
-            return redirect('/post/' . $post->slug)->with('success', 'This meme is not featured anymore');
+            return redirect('/post/' . $post->slug)->with('warning', 'This meme is not featured anymore');
         }
 
 
