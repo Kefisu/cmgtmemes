@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Post;
 
 class PostsController extends Controller
@@ -80,7 +81,11 @@ class PostsController extends Controller
         $post->slug = strtolower(str_replace(' ', '-', $request->input('title')));
         $post->save();
 
-        return redirect('/upload')->with('success', 'Post Created');
+//        foreach () :
+//
+//        endforeach;
+
+        return redirect('/post/' . $post->slug)->with('success', 'Meme uploaded');
     }
 
     /**
@@ -135,6 +140,45 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+
+        // Check for correct user
+        if (auth()->user()->id !== $post->user_id) {
+            return redirect('/login')->with('error', 'Unauthorized page');
+        }
+
+        if ($post->meme_image != 'noimage.jpg') {
+            // Delete image
+            Storage::delete('public/uploads/' . $post->meme_image);
+        }
+
+        $post->delete();
+        return redirect('/upload')->with('success', 'Meme removed');
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function featured(Request $request ,$id)
+    {
+        $featured = $request->input('featured');
+        $post = Post::find($id);
+        if (isset($featured)) {
+            // Feature meme
+            $post->featured = 1;
+            $post->save();
+
+            return redirect('/post/' . $post->slug)->with('success', 'This meme is now featured');
+        } else {
+            // Unfeature meme
+            $post->featured = 0;
+            $post->save();
+
+            return redirect('/post/' . $post->slug)->with('success', 'This meme is not featured anymore');
+        }
+
+
     }
 }

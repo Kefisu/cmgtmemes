@@ -10602,7 +10602,8 @@ svg {
   font-size: 4em;
 }
 
-button {
+button,
+.button {
   color: #545454;
   font-size: 1em;
   background: #fff;
@@ -10612,7 +10613,8 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+button:hover,
+.button:hover {
   background: #cc0133;
   text-decoration: none;
   color: #fff;
@@ -10912,5 +10914,75 @@ label {
 
 .tag a {
   color: #fff !important;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+@media (max-width: 800px) {
+  .container {
+    margin: 0 20px 0 20px;
+    padding: 0;
+  }
+}
+
+.bs-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.bs-switch input {
+  display: none;
+}
+
+.bs-switch input:checked + .slider {
+  background-color: #00C851;
+}
+
+.bs-switch input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+          transform: translateX(26px);
+}
+
+.bs-switch input:focus + .slider {
+  -webkit-box-shadow: 0 0 1px #00C851;
+          box-shadow: 0 0 1px #00C851;
+}
+
+.bs-switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.bs-switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.bs-switch .slider.round {
+  border-radius: 34px;
+}
+
+.bs-switch .slider.round:before {
+  border-radius: 50%;
 }
 
