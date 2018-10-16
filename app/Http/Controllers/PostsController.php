@@ -21,12 +21,15 @@ class PostsController extends Controller
      */
     public function create(Request $request)
     {
-
-        $request->user()->authorizeRoles(['user', 'admin']);
+//        // Authorize user
+//        if (!$request->user()->authorizeRoles(['user', 'admin'])) :
+//            abort(401, 'This action is unauthorized.');
+//        endif;
 
         $data = [
             'header' => 'white',
-            'tags' => Tag::all()
+            'tags' => Tag::all(),
+            'admin' => $request->user()->authorizeRoles(['user', 'admin'])
         ];
 
         return view('app.posts.create')->with($data);
@@ -102,6 +105,7 @@ class PostsController extends Controller
         $data = [
             'post' => Post::where('slug', $title)->first()->load('tags'),
             'header' => 'white',
+            'admin' => $request->user()->authorizeRoles('admin')
         ];
         $data['header_image'] = $data['post']->meme_image;
 
@@ -164,7 +168,7 @@ class PostsController extends Controller
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function featured(Request $request ,$id)
+    public function featured(Request $request, $id)
     {
         $featured = $request->input('featured');
         $post = Post::find($id);
