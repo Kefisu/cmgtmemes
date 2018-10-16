@@ -81,7 +81,7 @@ svg {
         }
 
         .login span {
-            display: none;
+            font-size: .8em;
         }
     }
 
@@ -234,7 +234,7 @@ button:hover {
     background-color: #fff;
 
     a {
-        color: #cc0133;
+        color: #cc0133 !important;
     }
 }
 
@@ -418,4 +418,12 @@ label {
 
 .responsive-image {
     width: 100%;
+}
+
+.description a {
+    color: #000 !important;
+
+}
+.tag a {
+    color: #fff !important;
 }

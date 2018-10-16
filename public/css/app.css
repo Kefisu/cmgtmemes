@@ -10551,7 +10551,7 @@ svg {
   }
 
   #nav .login span {
-    display: none;
+    font-size: .8em;
   }
 }
 
@@ -10717,7 +10717,7 @@ button:hover {
 }
 
 .tag.overview a {
-  color: #cc0133;
+  color: #cc0133 !important;
 }
 
 .browser-bg {
@@ -10904,5 +10904,13 @@ label {
 
 .responsive-image {
   width: 100%;
+}
+
+.description a {
+  color: #000 !important;
+}
+
+.tag a {
+  color: #fff !important;
 }
 
