@@ -50,7 +50,6 @@
                 <p class="m-0">Tags</p>
                 <span class="explanation">Selecteer hier de tags die bij jouw meme passen.</span>
                 <select name="tags[]" class="full-width" size="3" multiple="multiple">
-                    <option selected>De tags staan hieronder.</option>
                     @foreach($tags as $tag)
                         <option value="{{ $tag->id }}">{{  $tag->name }}</option>
                     @endforeach
