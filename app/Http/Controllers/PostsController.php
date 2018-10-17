@@ -87,10 +87,12 @@ class PostsController extends Controller
         $post->slug = strtolower(str_replace(' ', '-', $request->input('title')));
         $post->save();
 
-        foreach ($request->input('tags') as $tag) :
-            $post->tags()->attach($tag);
-        endforeach;
-
+        if (!empty($request->input('tags'))) :
+            foreach ($request->input('tags') as $tag) :
+                $post->tags()->attach($tag);
+            endforeach;
+        endif;
+        
         return redirect('/post/' . $post->slug)->with('success', 'Meme uploaded');
     }
 
