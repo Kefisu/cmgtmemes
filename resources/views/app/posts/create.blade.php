@@ -54,8 +54,7 @@
                 </select>
                 <span class="explanation">Voeg een nieuwe tag toe</span>
                 {{ Form::text('newtag', '', ['id' => 'newtag', 'class' => 'full-width']) }}
-                <button class="disabled mt-1" v-on:click.prevent="addTag" v-model="tag">Tag toevoegen</button>
-
+                <button class="disabled mt-2" v-on:click.prevent="addTag">Tag toevoegen</button>
             </div>
             <div class="form-group">
                 <p class="m-0">Meme</p>

@@ -21,12 +21,17 @@ class TagsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param  String
+     * @return Bool
      */
-    public function store(Request $request)
+    public function store($slug)
     {
-        //
+        $name = $slug;
+        $tag = new Tag;
+        $tag->name = $name;
+        $tag->save();
+
+        return 'success';
     }
 
     /**
@@ -81,6 +86,6 @@ class TagsController extends Controller
 
     public function get()
     {
-        return Tag::all();
+        return Tag::orderBy('id', 'desc')->get();
     }
 }

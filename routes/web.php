@@ -24,3 +24,13 @@ Route::put('/post/featured/{post}', 'PostsController@featured');
 // Tag routes
 Route::get('/tag/{slug}', 'TagsController@show');
 Route::get('/tags/get', 'TagsController@get');
+Route::get('/tag/add/{slug}', 'TagsController@store');
+
+// Dashboard redirect route
+Route::get('/dashboard', 'DashboardController');
+
+// User dashboard routes
+Route::get('/user', 'UserDashboardController@index')->name('userDashboard');
+
+// Admin dashboard routes
+Route::get('/admin', 'AdminDashboardController@index')->name('adminDashboard');

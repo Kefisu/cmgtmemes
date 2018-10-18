@@ -13886,7 +13886,6 @@ module.exports = __webpack_require__(43);
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -13926,11 +13925,13 @@ var app = new Vue({
         addTag: function addTag() {
             var _this2 = this;
 
-            var token = document.head.querySelector('meta[name="csrf-token"]');
-
             console.log('Adding tag..');
-            axios.post('/tag/store', {}).then(function (response) {
+            var tag = document.getElementById('newtag');
+            axios.get('/tag/add/' + tag.value).then(function (response) {
+                // Reload data
                 _this2.fetchData();
+                // Empty input
+                tag.value = "";
             });
         }
     }
