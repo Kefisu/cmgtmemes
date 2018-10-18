@@ -18,5 +18,30 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    created() {
+        this.fetchData();
+    },
+    data: {
+        tags: []
+    },
+    methods: {
+        fetchData() {
+            console.log('Fetching data..');
+            axios.get('/tags/get').then(response => {
+                this.tags = response.data;
+            });
+        },
+        addTag() {
+            var token = document.head.querySelector('meta[name="csrf-token"]');
+
+            console.log('Adding tag..');
+            axios.post('/tag/store', {
+                
+            }).then(response => {
+                this.fetchData()
+            })
+        }
+    }
+
 });

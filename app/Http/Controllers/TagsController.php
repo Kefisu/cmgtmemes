@@ -78,4 +78,9 @@ class TagsController extends Controller
     {
         //
     }
+
+    public function get()
+    {
+        return Tag::all();
+    }
 }

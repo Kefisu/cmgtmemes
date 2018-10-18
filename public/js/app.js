@@ -13906,7 +13906,35 @@ window.Vue = __webpack_require__(36);
 Vue.component('example-component', __webpack_require__(39));
 
 var app = new Vue({
-  el: '#app'
+    el: '#app',
+    created: function created() {
+        this.fetchData();
+    },
+
+    data: {
+        tags: []
+    },
+    methods: {
+        fetchData: function fetchData() {
+            var _this = this;
+
+            console.log('Fetching data..');
+            axios.get('/tags/get').then(function (response) {
+                _this.tags = response.data;
+            });
+        },
+        addTag: function addTag() {
+            var _this2 = this;
+
+            var token = document.head.querySelector('meta[name="csrf-token"]');
+
+            console.log('Adding tag..');
+            axios.post('/tag/store', {}).then(function (response) {
+                _this2.fetchData();
+            });
+        }
+    }
+
 });
 
 /***/ }),

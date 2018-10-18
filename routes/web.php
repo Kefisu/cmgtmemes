@@ -23,3 +23,4 @@ Route::put('/post/featured/{post}', 'PostsController@featured');
 
 // Tag routes
 Route::get('/tag/{slug}', 'TagsController@show');
+Route::get('/tags/get', 'TagsController@get');

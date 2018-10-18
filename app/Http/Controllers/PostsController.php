@@ -28,7 +28,7 @@ class PostsController extends Controller
 
         $data = [
             'header' => 'white',
-            'tags' => Tag::all(),
+//            'tags' => Tag::all(),
             'admin' => $request->user()->authorizeRoles(['user', 'admin'])
         ];
 
@@ -92,7 +92,7 @@ class PostsController extends Controller
                 $post->tags()->attach($tag);
             endforeach;
         endif;
-        
+
         return redirect('/post/' . $post->slug)->with('success', 'Meme uploaded');
     }
 
