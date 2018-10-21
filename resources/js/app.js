@@ -27,6 +27,7 @@ const app = new Vue({
     methods: {
         fetchData() {
             console.log('Fetching data..');
+            // Fetch all tags
             axios.get('/tags/get').then(response => {
                 this.tags = response.data;
             });
@@ -34,6 +35,7 @@ const app = new Vue({
         addTag() {
             console.log('Adding tag..');
             var tag = document.getElementById('newtag');
+            // Make ajax request
             axios.get('/tag/add/' + tag.value).then(response => {
                 // Reload data
                 this.fetchData();

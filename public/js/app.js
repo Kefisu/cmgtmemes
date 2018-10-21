@@ -13918,6 +13918,7 @@ var app = new Vue({
             var _this = this;
 
             console.log('Fetching data..');
+            // Fetch all tags
             axios.get('/tags/get').then(function (response) {
                 _this.tags = response.data;
             });
@@ -13927,6 +13928,7 @@ var app = new Vue({
 
             console.log('Adding tag..');
             var tag = document.getElementById('newtag');
+            // Make ajax request
             axios.get('/tag/add/' + tag.value).then(function (response) {
                 // Reload data
                 _this2.fetchData();
