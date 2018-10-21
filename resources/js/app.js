@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -18,5 +17,32 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    created() {
+        this.fetchData();
+    },
+    data: {
+        tags: []
+    },
+    methods: {
+        fetchData() {
+            console.log('Fetching data..');
+            // Fetch all tags
+            axios.get('/tags/get').then(response => {
+                this.tags = response.data;
+            });
+        },
+        addTag() {
+            console.log('Adding tag..');
+            var tag = document.getElementById('newtag');
+            // Make ajax request
+            axios.get('/tag/add/' + tag.value).then(response => {
+                // Reload data
+                this.fetchData();
+                // Empty input
+                tag.value = "";
+            })
+        },
+    }
+
 });

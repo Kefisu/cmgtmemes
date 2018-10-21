@@ -13886,7 +13886,6 @@ module.exports = __webpack_require__(43);
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -13906,7 +13905,39 @@ window.Vue = __webpack_require__(36);
 Vue.component('example-component', __webpack_require__(39));
 
 var app = new Vue({
-  el: '#app'
+    el: '#app',
+    created: function created() {
+        this.fetchData();
+    },
+
+    data: {
+        tags: []
+    },
+    methods: {
+        fetchData: function fetchData() {
+            var _this = this;
+
+            console.log('Fetching data..');
+            // Fetch all tags
+            axios.get('/tags/get').then(function (response) {
+                _this.tags = response.data;
+            });
+        },
+        addTag: function addTag() {
+            var _this2 = this;
+
+            console.log('Adding tag..');
+            var tag = document.getElementById('newtag');
+            // Make ajax request
+            axios.get('/tag/add/' + tag.value).then(function (response) {
+                // Reload data
+                _this2.fetchData();
+                // Empty input
+                tag.value = "";
+            });
+        }
+    }
+
 });
 
 /***/ }),

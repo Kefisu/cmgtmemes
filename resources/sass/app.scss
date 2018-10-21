@@ -10,6 +10,10 @@ html {
     background-color: #999;
 }
 
+a {
+    text-decoration: none !important;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -23,6 +27,11 @@ body {
 h3 {
     font-weight: 300;
     font-size: 2em;
+}
+
+h4 {
+    font-weight: 300;
+    font-size: 1.6em;
 }
 
 .bg-red {
@@ -72,7 +81,7 @@ svg {
         }
 
         .login span {
-            display: none;
+            font-size: .8em;
         }
     }
 
@@ -119,7 +128,8 @@ svg {
     }
 }
 
-button {
+button,
+.button {
     color: #545454;
     font-size: 1em;
     background: #fff;
@@ -130,7 +140,8 @@ button {
 
 }
 
-button:hover {
+button:hover,
+.button:hover {
     background: #cc0133;
     text-decoration: none;
     color: #fff;
@@ -181,7 +192,7 @@ button:hover {
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            background: url('https://cmgtmemes.nl/images/overlay.svg') no-repeat bottom;
+            background: url('https://cmgt.hr.nl/./images/overlay.svg') no-repeat bottom;
             -webkit-background-size: 100% 40%;
             background-size: 100% 40%;
         }
@@ -225,7 +236,7 @@ button:hover {
     background-color: #fff;
 
     a {
-        color: #cc0133;
+        color: #cc0133 !important;
     }
 }
 
@@ -388,7 +399,7 @@ button:hover {
     width: 100%;
 
     @media(max-width: 800px) {
-        width: 80%;
+        width: 90%;
     }
 }
 
@@ -404,5 +415,81 @@ label {
 
     @media(max-width: 800px) {
         width: 80%;
+    }
+}
+
+.responsive-image {
+    width: 100%;
+}
+
+.description a {
+    color: #000 !important;
+
+}
+.tag a {
+    color: #fff !important;
+}
+
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0;
+
+    @media (max-width: 800px) {
+        margin: 0 20px 0 20px;
+        padding: 0;
+    }
+}
+
+// Switch free
+.bs-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    input {
+        display: none;
+        &:checked {
+            + .slider {
+                background-color: #00C851;
+                &:before {
+                    transform: translateX(26px);
+                }
+            }
+        }
+        &:focus {
+            + .slider {
+                box-shadow: 0 0 1px #00C851;
+            }
+        }
+    }
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+        &:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+        &.round {
+            border-radius: 34px;
+            &:before {
+                border-radius: 50%;
+            }
+        }
     }
 }
