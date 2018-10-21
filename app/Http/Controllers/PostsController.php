@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Post;
 use App\Tag;
+use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
@@ -21,15 +22,10 @@ class PostsController extends Controller
      */
     public function create(Request $request)
     {
-//        // Authorize user
-//        if (!$request->user()->authorizeRoles(['user', 'admin'])) :
-//            abort(401, 'This action is unauthorized.');
-//        endif;
-
         $data = [
             'header' => 'white',
             'tags' => Tag::all(),
-            'admin' => $request->user()->authorizeRoles(['user', 'admin'])
+//            'admin' => $request->user()->authorizeRoles(['user', 'admin'])
         ];
 
         return view('app.posts.create')->with($data);
@@ -92,7 +88,7 @@ class PostsController extends Controller
                 $post->tags()->attach($tag);
             endforeach;
         endif;
-        
+
         return redirect('/post/' . $post->slug)->with('success', 'Meme uploaded');
     }
 
@@ -104,10 +100,18 @@ class PostsController extends Controller
      */
     public function show($title, Request $request)
     {
+        // Check if user is logged in and has correct role
+        if(!$user = Auth::user())
+        {
+            $this->admin = false;
+        } else {
+            $this->admin = $request->user()->authorizeRoles('admin');
+        }
+
         $data = [
             'post' => Post::where('slug', $title)->first()->load('tags'),
             'header' => 'white',
-            'admin' => $request->user()->authorizeRoles('admin')
+            'admin' => $this->admin
         ];
         $data['header_image'] = $data['post']->meme_image;
 
