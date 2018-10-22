@@ -23,9 +23,7 @@ class PostsController extends Controller
     public function create(Request $request)
     {
         $data = [
-            'header' => 'white',
-            'tags' => Tag::all(),
-//            'admin' => $request->user()->authorizeRoles(['user', 'admin'])
+            'header' => 'white'
         ];
 
         return view('app.posts.create')->with($data);
@@ -48,7 +46,6 @@ class PostsController extends Controller
             'description' => 'required',
             'file' => 'image|nullable'
         ]);
-
         // Handle author
         if (empty($request->input('author'))) {
             $this->author = 'Annoniem';
@@ -73,14 +70,14 @@ class PostsController extends Controller
         }
 
         $post = new Post;
-        $post->title = $request->input('title');
-        $post->author = $this->author;
-        $post->year = $request->input('year');
-        $post->tagline = $request->input('tagline');
-        $post->description = $request->input('description');
-        $post->meme_image = $fileNameToStore;
+        $post->title = strip_tags($request->input('title'));
+        $post->author = strip_tags($this->author);
+        $post->year = strip_tags($request->input('year'));
+        $post->tagline = strip_tags($request->input('tagline'));
+        $post->description = strip_tags($request->input('description'));
+        $post->meme_image = strip_tags($fileNameToStore);
         $post->user_id = auth()->user()->id;
-        $post->slug = strtolower(str_replace(' ', '-', $request->input('title')));
+        $post->slug = strip_tags(strtolower(str_replace(' ', '-', $request->input('title'))));
         $post->save();
 
         if (!empty($request->input('tags'))) :
