@@ -33,6 +33,8 @@
     <div class="banner">
         @if(isset($header_image))
             <h1>{{ $post->title }}</h1>
+        @elseif(isset($title))
+            <h1>{{ $title }}</h1>
         @else
             <h1>MEMES</h1>
             <button>Wijze woorden van Leonardo</button>

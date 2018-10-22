@@ -21,10 +21,10 @@ class DashboardController extends Controller
             return redirect('/login')->with('warning', 'You need to be logged in to access this page');
         } else {
             // Check if user has correct role
-            if ($this->admin = $request->user()->authorizeRoles('admin')) {
+            if ($request->user()->authorizeRoles('admin')) {
                 // Check if user role is admin
                 return redirect(url('/admin'));
-            } elseif ($this->admin = $request->user()->authorizeRoles('user')) {
+            } elseif ($request->user()->authorizeRoles('user')) {
                 // Check if user role is user
                 return redirect(url('/user'));
             } else {
