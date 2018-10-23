@@ -25,7 +25,7 @@
 
 <section class="banner-bg"
          style="background-image: url(@if(isset($header_image)) '{{ asset('/storage/uploads/' . $header_image) }}'
-         @else '{{ asset('/storage/uploads/' . $randomHeader->meme_image) }}'
+         @else @isset($randomHeader)'{{ asset('/storage/uploads/' . $randomHeader->meme_image) }}'@endisset
          @endif);">
     <svg viewBox="0 0 1000 70" width="1000vw" height="70px" preserveAspectRatio="none" class="poly">
         <polygon points="{{ rand(200, 900) }} 0 1000 70 0 70"
@@ -38,7 +38,10 @@
             <h1>{{ $title }}</h1>
         @else
             <h1>MEMES</h1>
-            <button onclick="window.location.href='{{ url('post', [$randomHeader->slug]) }}'">{{ $randomHeader->title }}</button>
+            @isset($randomHeader)
+                <button
+                    onclick="window.location.href='{{ url('post', [$randomHeader->slug]) }}'">{{ $randomHeader->title }}</button>
+            @endisset
         @endif
     </div>
 </section>
