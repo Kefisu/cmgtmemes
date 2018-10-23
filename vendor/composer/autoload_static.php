@@ -13,10 +13,10 @@ class ComposerStaticInit15bce89e229c8461d4d3c8b50001251d
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
-        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
-        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
@@ -59,6 +59,8 @@ class ComposerStaticInit15bce89e229c8461d4d3c8b50001251d
             'Symfony\\Component\\Debug\\' => 24,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
+            'Spatie\\LaravelImageOptimizer\\' => 29,
+            'Spatie\\ImageOptimizer\\' => 22,
         ),
         'R' => 
         array (
@@ -220,6 +222,14 @@ class ComposerStaticInit15bce89e229c8461d4d3c8b50001251d
         'Symfony\\Component\\Console\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
+        ),
+        'Spatie\\LaravelImageOptimizer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/laravel-image-optimizer/src',
+        ),
+        'Spatie\\ImageOptimizer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/image-optimizer/src',
         ),
         'Ramsey\\Uuid\\' => 
         array (
@@ -427,6 +437,7 @@ class ComposerStaticInit15bce89e229c8461d4d3c8b50001251d
         'App\\Http\\Controllers\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/DashboardController.php',
         'App\\Http\\Controllers\\PagesController' => __DIR__ . '/../..' . '/app/Http/Controllers/PagesController.php',
         'App\\Http\\Controllers\\PostsController' => __DIR__ . '/../..' . '/app/Http/Controllers/PostsController.php',
+        'App\\Http\\Controllers\\SearchController' => __DIR__ . '/../..' . '/app/Http/Controllers/SearchController.php',
         'App\\Http\\Controllers\\TagsController' => __DIR__ . '/../..' . '/app/Http/Controllers/TagsController.php',
         'App\\Http\\Controllers\\UserDashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserDashboardController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
@@ -3552,6 +3563,22 @@ class ComposerStaticInit15bce89e229c8461d4d3c8b50001251d
         'SebastianBergmann\\Timer\\RuntimeException' => __DIR__ . '/..' . '/phpunit/php-timer/src/RuntimeException.php',
         'SebastianBergmann\\Timer\\Timer' => __DIR__ . '/..' . '/phpunit/php-timer/src/Timer.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Spatie\\ImageOptimizer\\DummyLogger' => __DIR__ . '/..' . '/spatie/image-optimizer/src/DummyLogger.php',
+        'Spatie\\ImageOptimizer\\Image' => __DIR__ . '/..' . '/spatie/image-optimizer/src/Image.php',
+        'Spatie\\ImageOptimizer\\Optimizer' => __DIR__ . '/..' . '/spatie/image-optimizer/src/Optimizer.php',
+        'Spatie\\ImageOptimizer\\OptimizerChain' => __DIR__ . '/..' . '/spatie/image-optimizer/src/OptimizerChain.php',
+        'Spatie\\ImageOptimizer\\OptimizerChainFactory' => __DIR__ . '/..' . '/spatie/image-optimizer/src/OptimizerChainFactory.php',
+        'Spatie\\ImageOptimizer\\Optimizers\\BaseOptimizer' => __DIR__ . '/..' . '/spatie/image-optimizer/src/Optimizers/BaseOptimizer.php',
+        'Spatie\\ImageOptimizer\\Optimizers\\Gifsicle' => __DIR__ . '/..' . '/spatie/image-optimizer/src/Optimizers/Gifsicle.php',
+        'Spatie\\ImageOptimizer\\Optimizers\\Jpegoptim' => __DIR__ . '/..' . '/spatie/image-optimizer/src/Optimizers/Jpegoptim.php',
+        'Spatie\\ImageOptimizer\\Optimizers\\Optipng' => __DIR__ . '/..' . '/spatie/image-optimizer/src/Optimizers/Optipng.php',
+        'Spatie\\ImageOptimizer\\Optimizers\\Pngquant' => __DIR__ . '/..' . '/spatie/image-optimizer/src/Optimizers/Pngquant.php',
+        'Spatie\\ImageOptimizer\\Optimizers\\Svgo' => __DIR__ . '/..' . '/spatie/image-optimizer/src/Optimizers/Svgo.php',
+        'Spatie\\LaravelImageOptimizer\\Exceptions\\InvalidConfiguration' => __DIR__ . '/..' . '/spatie/laravel-image-optimizer/src/Exceptions/InvalidConfiguration.php',
+        'Spatie\\LaravelImageOptimizer\\Facades\\ImageOptimizer' => __DIR__ . '/..' . '/spatie/laravel-image-optimizer/src/Facades/ImageOptimizer.php',
+        'Spatie\\LaravelImageOptimizer\\ImageOptimizerServiceProvider' => __DIR__ . '/..' . '/spatie/laravel-image-optimizer/src/ImageOptimizerServiceProvider.php',
+        'Spatie\\LaravelImageOptimizer\\Middlewares\\OptimizeImages' => __DIR__ . '/..' . '/spatie/laravel-image-optimizer/src/Middlewares/OptimizeImages.php',
+        'Spatie\\LaravelImageOptimizer\\OptimizerChainFactory' => __DIR__ . '/..' . '/spatie/laravel-image-optimizer/src/OptimizerChainFactory.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\CommandLoader\\CommandLoaderInterface' => __DIR__ . '/..' . '/symfony/console/CommandLoader/CommandLoaderInterface.php',
         'Symfony\\Component\\Console\\CommandLoader\\ContainerCommandLoader' => __DIR__ . '/..' . '/symfony/console/CommandLoader/ContainerCommandLoader.php',

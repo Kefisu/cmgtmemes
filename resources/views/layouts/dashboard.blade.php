@@ -37,18 +37,31 @@
                 </h6>
                 <ul class="nav flex-column mb-2">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ url('/admin/account') }}">
                             <span data-feather="book-open"></span>
                             Account overview
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="@isset($admin){{ url('/admin/account/update') }}@else{{ url('/user/account/update') }}@endisset">
                             <span data-feather="settings"></span>
                             Update account
                         </a>
                     </li>
                 </ul>
+                @isset($admin)
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>Analytics</span>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('analytics') }}">
+                                <span data-feather="activity"></span>
+                                Site statistics
+                            </a>
+                        </li>
+                    </ul>
+                @endisset
             </div>
         </nav>
 
@@ -68,10 +81,11 @@
                 </div>
             </div>
             @yield('content')
-            {{--<canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>--}}
         </main>
     </div>
 </div>
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}" defer></script>
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>

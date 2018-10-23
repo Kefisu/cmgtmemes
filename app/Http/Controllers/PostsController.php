@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use App\Post;
 use App\Tag;
@@ -79,12 +80,14 @@ class PostsController extends Controller
         $post->user_id = auth()->user()->id;
         $post->slug = strip_tags(strtolower(str_replace(' ', '-', $request->input('title'))));
         $post->save();
-
         if (!empty($request->input('tags'))) :
             foreach ($request->input('tags') as $tag) :
                 $post->tags()->attach($tag);
             endforeach;
         endif;
+        // Brute force algolia update
+        $post->save();
+
 
         return redirect('/post/' . $post->slug)->with('success', 'Meme uploaded');
     }
@@ -161,7 +164,7 @@ class PostsController extends Controller
             // Delete image
             Storage::delete('public/uploads/' . $post->meme_image);
         }
-
+        $post->tags()->detach();
         $post->delete();
         return redirect('/upload')->with('success', 'Meme removed');
     }
