@@ -44,12 +44,13 @@ class DashboardController extends Controller
         if (!$request->user()->authorizeRoles('admin')) {
             return redirect(url('/user'));
         }
+        $admin = 1;
 
         $data = [
             'posts' => Post::orderBy('id', 'desc')->paginate(10),
             'users' => User::paginate(10),
             'title' => 'Dashboard',
-            'admin' => 1
+            'admin' => $admin
         ];
 
         return view('dashboard.admin.index')->with($data);
@@ -97,7 +98,8 @@ class DashboardController extends Controller
 
         $data = [
             'posts' => $posts,
-            'title' => 'Dashboard'
+            'title' => 'Dashboard',
+            'admin' => 0
         ];
 
         return view('dashboard.user.index')->with($data);
