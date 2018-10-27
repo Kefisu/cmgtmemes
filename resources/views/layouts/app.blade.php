@@ -1,6 +1,8 @@
 <!-- Include head section -->
+@section('styles')
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@endsection
 @include('layouts.partials._head')
-
 <body>
 <div id="app">
 
@@ -14,19 +16,23 @@
     @include('layouts.partials._lower-half')
 
 </div>
-<script type="text/javascript">
-    function featuredCheck() {
-        // Get the checkbox
-        var checkBox = document.getElementById("featured");
-        var featuredForm = document.getElementById("featuredForm");
+@auth
+    <script type="text/javascript">
+        function featuredCheck() {
+            // Get the checkbox
+            var checkBox = document.getElementById("featured");
+            var featuredForm = document.getElementById("featuredForm");
 
-        // If the checkbox is checked, display the output text
-        if (checkBox.checked === true){
-            featuredForm.submit();
-        } else {
-            featuredForm.submit();
+            // If the checkbox is checked, display the output text
+            if (checkBox.checked === true) {
+                featuredForm.submit();
+            } else {
+                featuredForm.submit();
+            }
         }
-    }
-</script>
+    </script>
+@endauth
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>

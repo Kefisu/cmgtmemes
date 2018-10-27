@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use App\Post;
 use App\Tag;
@@ -22,10 +23,19 @@ class PostsController extends Controller
      */
     public function create(Request $request)
     {
+            $posts = Post::orderBy('id' , 'desc')->get()->load('tags');
+
+            $random = $posts->where('featured', 1)->all();
+            if (count($random) != 0):
+                $random = $posts->where('featured', 1)->random(1)->first();
+            else:
+                $random = null;
+            endif;
+
         $data = [
             'header' => 'white',
-            'tags' => Tag::all(),
-//            'admin' => $request->user()->authorizeRoles(['user', 'admin'])
+            'title' => 'Upload meme',
+            'randomHeader' => $random
         ];
 
         return view('app.posts.create')->with($data);
@@ -48,7 +58,6 @@ class PostsController extends Controller
             'description' => 'required',
             'file' => 'image|nullable'
         ]);
-
         // Handle author
         if (empty($request->input('author'))) {
             $this->author = 'Annoniem';
@@ -73,21 +82,23 @@ class PostsController extends Controller
         }
 
         $post = new Post;
-        $post->title = $request->input('title');
-        $post->author = $this->author;
-        $post->year = $request->input('year');
-        $post->tagline = $request->input('tagline');
-        $post->description = $request->input('description');
-        $post->meme_image = $fileNameToStore;
+        $post->title = strip_tags($request->input('title'));
+        $post->author = strip_tags($this->author);
+        $post->year = strip_tags($request->input('year'));
+        $post->tagline = strip_tags($request->input('tagline'));
+        $post->description = strip_tags($request->input('description'));
+        $post->meme_image = strip_tags($fileNameToStore);
         $post->user_id = auth()->user()->id;
-        $post->slug = strtolower(str_replace(' ', '-', $request->input('title')));
+        $post->slug = strip_tags(strtolower(str_replace(' ', '-', $request->input('title'))));
         $post->save();
-
         if (!empty($request->input('tags'))) :
             foreach ($request->input('tags') as $tag) :
                 $post->tags()->attach($tag);
             endforeach;
         endif;
+        // Brute force algolia update
+        $post->save();
+
 
         return redirect('/post/' . $post->slug)->with('success', 'Meme uploaded');
     }
@@ -164,7 +175,7 @@ class PostsController extends Controller
             // Delete image
             Storage::delete('public/uploads/' . $post->meme_image);
         }
-
+        $post->tags()->detach();
         $post->delete();
         return redirect('/upload')->with('success', 'Meme removed');
     }
@@ -191,7 +202,5 @@ class PostsController extends Controller
 
             return redirect('/post/' . $post->slug)->with('warning', 'This meme is not featured anymore');
         }
-
-
     }
 }
