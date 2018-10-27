@@ -14,7 +14,7 @@
         @guest
             <a href="{{ route('login') }}"><img src="{{ asset('/svg/login.svg') }}" alt="login" class="red-fill"></a>
         @else
-            <a href="{{ url('dashboard') }}"><img src="{{ asset('/svg/account.svg') }}" alt="dashboard"></a>
+            <a href="{{ url('admin') }}"><img src="{{ asset('/svg/account.svg') }}" alt="dashboard"></a>
         @endguest
     </div>
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
