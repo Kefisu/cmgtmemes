@@ -28,17 +28,19 @@ Route::middleware('optimizeImages')->group(function () {
     Route::get('/tag/add/{slug}', 'TagsController@store')->middleware('verified');;
 
     // Dashboard redirect route
-    Route::get('/dashboard', 'DashboardController');
+    Route::get('/dashboard', 'DashboardController@index');
 
     // User dashboard routes
-    Route::get('/user', 'UserDashboardController@index')->name('userDashboard');
-    Route::get('/user/account', 'UserDashboardController@account')->name('userAccount');
+    Route::get('/user', 'DashboardController@user')->name('userDashboard');
+    Route::get('/user/account', 'DashboardController@account')->name('userAccount');
 
     // Admin dashboard routes
-    Route::get('/admin', 'AdminDashboardController@index')->name('adminDashboard');
-    Route::get('/admin/account', 'AdminDashboardController@account')->name('adminAccount');
-    Route::get('/admin/analytics', 'AdminDashboardController@analytics')->name('analytics');
+    Route::get('/admin', 'DashboardController@admin')->name('adminDashboard');
+    Route::get('/admin/account', 'DashboardController@account')->name('adminAccount');
+    Route::get('/admin/analytics', 'DashboardController@analytics')->name('analytics');
+    Route::put('/admin/featured/{post}', 'DashboardController@featured');
 
     Route::get('/search', 'SearchController@index');
     Route::post('/search', 'SearchController@index');
+    Route::get('/privacy', 'PagesController@privacy')->name('privacy');
 });

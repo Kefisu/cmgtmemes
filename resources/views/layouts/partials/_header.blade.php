@@ -25,7 +25,7 @@
 
 <section class="banner-bg"
          style="background-image: url(@if(isset($header_image)) '{{ asset('/storage/uploads/' . $header_image) }}'
-         @else @isset($randomHeader)'{{ asset('/storage/uploads/' . $randomHeader->meme_image) }}'@endisset
+         @elseif($randomHeader != null)'{{ asset('/storage/uploads/' . $randomHeader->meme_image) }}'@else {{ asset('/storage/img/noimage.jpg') }}
          @endif);">
     <svg viewBox="0 0 1000 70" width="1000vw" height="70px" preserveAspectRatio="none" class="poly">
         <polygon points="{{ rand(200, 900) }} 0 1000 70 0 70"
