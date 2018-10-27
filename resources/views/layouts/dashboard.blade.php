@@ -25,7 +25,7 @@
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('admin') || Request::is('user') ? 'active' : '' }}" href="@if($admin == 1){{ url('/admin') }}@else{{ url('/user') }}@endif">
+                        <a class="nav-link {{ Request::is('admin') || Request::is('user') ? 'active' : '' }}" href="@isset($admin) @if(admin == 1){{ url('/admin') }}@else{{ url('/user') }}@endif @endisset">
                             <span data-feather="home"></span>
                             Dashboard
                         </a>
@@ -44,7 +44,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('admin/account/update') || Request::is('user/account/update') ? 'active' : '' }}"
-                           href="@if($admin == 1){{ url('/admin/account/update') }}@else{{ url('/user/account/update') }}@endif">
+                           href="@isset($admin) @if($admin == 1){{ url('/admin/account/update') }}@else{{ url('/user/account/update') }}@endif @endisset">
                             <span data-feather="settings"></span>
                             Update account
                         </a>
