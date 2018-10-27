@@ -1,7 +1,5 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: kevit
- * Date: 15-10-2018
- * Time: 15:42
- */
+@section('styles')
+    <link href="{{ asset('css/auth.css') }}" rel="stylesheet">
+@endsection
+@include('layouts.partials._head')
+@yield('content')

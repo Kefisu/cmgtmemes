@@ -49,4 +49,23 @@ class AdminDashboardController extends Controller
         return view('dashboard.admin.analytics')->with($data);
     }
 
+    public function featured(Request $request, $id)
+    {
+        $featured = $request->input('featured');
+        $post = Post::find($id);
+        if (isset($featured)) {
+            // Feature meme
+            $post->featured = 1;
+            $post->save();
+
+            return redirect('/admin')->with('success', 'This meme is now featured');
+        } else {
+            // Unfeature meme
+            $post->featured = 0;
+            $post->save();
+
+            return redirect('/admin')->with('warning', 'This meme is not featured anymore');
+        }
+    }
+
 }

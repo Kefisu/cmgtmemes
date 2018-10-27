@@ -46,3 +46,20 @@ const app = new Vue({
     }
 
 });
+
+window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+        "palette": {
+            "popup": {
+                "background": "#237afc"
+            },
+            "button": {
+                "background": "#fff",
+                "text": "#237afc"
+            }
+        },
+        "position": "bottom-right",
+        "content": {
+            "href": "/privacy"
+        }
+    })});

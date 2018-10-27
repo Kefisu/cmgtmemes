@@ -27,7 +27,7 @@
                     <td>{{ $post->updated_at }}</td>
                     @isset($admin)
                         @if($admin !== false)
-                            <td>{!! Form::open(['action' => ['PostsController@featured', $post->id], 'method' => 'POST', 'id' => 'featuredForm']) !!}
+                            <td>{!! Form::open(['action' => ['DashboardController@featured', $post->id], 'method' => 'POST', 'id' => 'featuredForm']) !!}
                                 <label class="bs-switch">
                                     <input type="checkbox" name="featured" id="featured" value="1" onclick="submit()"
                                            @if($post->featured == 1) checked @endif>

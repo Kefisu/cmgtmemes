@@ -23,8 +23,19 @@ class PostsController extends Controller
      */
     public function create(Request $request)
     {
+            $posts = Post::orderBy('id' , 'desc')->get()->load('tags');
+
+            $random = $posts->where('featured', 1)->all();
+            if (count($random) != 0):
+                $random = $posts->where('featured', 1)->random(1)->first();
+            else:
+                $random = null;
+            endif;
+
         $data = [
-            'header' => 'white'
+            'header' => 'white',
+            'title' => 'Upload meme',
+            'randomHeader' => $random
         ];
 
         return view('app.posts.create')->with($data);
@@ -191,7 +202,5 @@ class PostsController extends Controller
 
             return redirect('/post/' . $post->slug)->with('warning', 'This meme is not featured anymore');
         }
-
-
     }
 }

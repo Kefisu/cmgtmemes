@@ -25,9 +25,9 @@
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">
+                        <a class="nav-link {{ Request::is('admin') || Request::is('user') ? 'active' : '' }}" href="@if($admin == 1){{ url('/admin') }}@else{{ url('/user') }}@endif">
                             <span data-feather="home"></span>
-                            Dashboard <span class="sr-only">(current)</span>
+                            Dashboard
                         </a>
                     </li>
                 </ul>
@@ -37,31 +37,43 @@
                 </h6>
                 <ul class="nav flex-column mb-2">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/admin/account') }}">
+                        <a class="nav-link {{ Request::is('admin/account') || Request::is('user/account') ? 'active' : '' }}" href="{{ url('/admin/account') }}">
                             <span data-feather="book-open"></span>
                             Account overview
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="@isset($admin){{ url('/admin/account/update') }}@else{{ url('/user/account/update') }}@endisset">
+                        <a class="nav-link {{ Request::is('admin/account/update') || Request::is('user/account/update') ? 'active' : '' }}"
+                           href="@if($admin == 1){{ url('/admin/account/update') }}@else{{ url('/user/account/update') }}@endif">
                             <span data-feather="settings"></span>
                             Update account
                         </a>
                     </li>
                 </ul>
                 @isset($admin)
-                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>Analytics</span>
-                    </h6>
-                    <ul class="nav flex-column mb-2">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('analytics') }}">
-                                <span data-feather="activity"></span>
-                                Site statistics
-                            </a>
-                        </li>
-                    </ul>
+                    @if($admin == 1)
+                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                            <span>Analytics</span>
+                        </h6>
+                        <ul class="nav flex-column mb-2">
+                            <li class="nav-item">
+                                <a class="nav-link {{ Request::is('admin/analytics') || Request::is('user/analytics') ? 'active' : '' }}" href="{{ route('analytics') }}">
+                                    <span data-feather="activity"></span>
+                                    Site statistics
+                                </a>
+                            </li>
+                        </ul>
+                    @endif
                 @endisset
+                <hr>
+                <ul class="nav flex-column mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/') }}">
+                            <span data-feather="chevron-left"></span>
+                            Back to homepage
+                        </a>
+                    </li>
+                </ul>
             </div>
         </nav>
 
