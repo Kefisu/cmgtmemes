@@ -34,14 +34,14 @@
             <div class="footer sub">
                 <div class="item">
                     <a href="https://cmgtmemes.nl">
-                        <img src="https://cmgt.hr.nl/./images/hr_logo.svg" alt="hr_logo">
+                        <img src="{{ asset('/svg/hr_logo.svg') }}" alt="hr_logo">
                         <br/>
                         <span class="copyright">&copy; {{ date('Y') }} CMGTMemes Rotterdam. Layout is totaal niet gestolen van CMGT Showcase.</span>
                     </a>
                 </div>
                 <div class="spacer"></div>
                 <div class="item">
-                    <img src="https://cmgt.hr.nl/./images/payoff.svg" alt="payoff" class="payoff">
+                    <img src="{{ asset('/svg/payoff.svg') }}" alt="payoff" class="payoff">
                 </div>
             </div>
             <div class="verticalspacer"></div>

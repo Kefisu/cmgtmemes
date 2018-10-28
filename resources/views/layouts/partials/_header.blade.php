@@ -2,7 +2,7 @@
 <div class="container p-0" id="nav">
     <a href="{{ route('homepage') }}">
         <div class="logo">
-            <img src="https://cmgt.hr.nl/./images/hr_logo.svg " alt="hr_logo">
+            <img src="{{ asset('/svg/hr_logo.svg') }}" alt="hr_logo">
             <h3 class="white-text mt-2">CREATIVE MEDIA AND GAME TECHNOLOGIES</h3>
         </div>
     </a>
