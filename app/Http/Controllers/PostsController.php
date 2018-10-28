@@ -137,11 +137,24 @@ class PostsController extends Controller
      */
     public function edit($title)
     {
-        $data = [
+        $posts = Post::orderBy('id' , 'desc')->get()->load('tags');
+        $post = Post::where('slug', $title)->first()->load('tags');
 
+        $random = $posts->where('featured', 1)->all();
+        if (count($random) != 0):
+            $random = $posts->where('featured', 1)->random(1)->first();
+        else:
+            $random = null;
+        endif;
+
+        $data = [
+            'header' => 'white',
+            'title' => 'Upload meme',
+            'randomHeader' => $random,
+            'post' => $post
         ];
 
-        return view()->with();
+        return view('app.posts.edit')->with($data);
     }
 
     /**

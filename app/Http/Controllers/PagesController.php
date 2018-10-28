@@ -28,7 +28,10 @@ class PagesController extends Controller
         ];
 
         // Return view with all posts & tags
-        return view('app.index')->with($data);
+//        return view('app.index')->with($data);
+        return response()
+            ->view('app.index', $data)
+            ->header('Cache-Control', 'max-age=86400');
     }
 
     public function privacy() {

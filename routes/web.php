@@ -20,8 +20,9 @@ Route::middleware('optimizeImages')->group(function () {
     // Post routes
     Route::get('/post/{slug}', 'PostsController@show')->name('showPost');
     Route::get('/upload', 'PostsController@create')->name('upload')->middleware('verified');
-    Route::resource('posts', 'PostsController');
     Route::put('/post/featured/{post}', 'PostsController@featured');
+    Route::get('/post/{slug}/edit', 'PostsController@edit');
+    Route::resource('posts', 'PostsController');
     // Tag routes
     Route::get('/tag/{slug}', 'TagsController@show');
     Route::get('/tags/get', 'TagsController@get');
@@ -43,4 +44,7 @@ Route::middleware('optimizeImages')->group(function () {
     Route::get('/search', 'SearchController@index');
     Route::post('/search', 'SearchController@index');
     Route::get('/privacy', 'PagesController@privacy')->name('privacy');
+    Route::get('/contact', 'PagesController@contact')->name('privacy');
+
+
 });

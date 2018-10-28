@@ -92,8 +92,13 @@ class DashboardController extends Controller
 
     // User dashboard funcions
 
-    public function user()
+    public function user(Request $request)
     {
+        // Check if user is admin
+        if (!$request->user()->authorizeRoles('user')) {
+            return redirect(url('/admin'));
+        }
+
         $posts = Post::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(10);
 
         $data = [
