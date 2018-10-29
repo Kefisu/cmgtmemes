@@ -50,9 +50,11 @@ class TagsController extends Controller
             $random = null;
         endif;
 
+//        return Tag::with('posts')->where('name', $tag)->paginate(1);
+
         $data = [
             'header' => 'white',
-            'posts' => Tag::where('name', $tag)->paginate(12)->load('posts'),
+            'posts' => Tag::with('posts')->where('name', $tag)->paginate(1),
             'randomHeader' => $random
         ];
 

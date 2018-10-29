@@ -11,11 +11,11 @@
             <p class="mt-3 mb-3">Memes in de spotlight</p>
             <section class="spotlight-bg">
                 <div class="row">
-                    @foreach($posts as $index => $post)
-                        @if($post->featured != 1) @continue @endif
+                    @foreach($featured as $index => $post)
                         @if($index > 1) @continue @endif
                         @include('app.partials._singlecase')
                     @endforeach
+                    <div class="col-12">{{ $featured }}</div>
                 </div>
             </section>
             <p>Bekijk hier alle uigelichte memes</p>
@@ -41,6 +41,9 @@
                 @foreach($posts as $post)
                     @include('app.partials._singlecase')
                 @endforeach
+                <div class="col-12">
+                    {{ $posts->links() }}
+                </div>
             </div>
         </div>
     </section>

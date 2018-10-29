@@ -1,6 +1,6 @@
 <!-- Include head section -->
 @section('styles')
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css', env('APP_USE_HTTPS')) }}" rel="stylesheet">
 @endsection
 @include('layouts.partials._head')
 <body>
@@ -33,6 +33,6 @@
     </script>
 @endauth
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="{{ asset('js/app.js', env('APP_USE_HTTPS')) }}" defer></script>
 </body>
 </html>

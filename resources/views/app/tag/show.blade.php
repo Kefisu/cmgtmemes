@@ -11,6 +11,7 @@
                 @foreach($posts->first()->posts as $post)
                     @include('app.partials._singlecase')
                 @endforeach
+                {{ $posts->links() }}
             </div>
         </div>
     </section>

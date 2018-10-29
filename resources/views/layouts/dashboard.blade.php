@@ -1,5 +1,5 @@
 @section('styles')
-    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/dashboard.css', env('APP_USE_HTTPS')) }}" rel="stylesheet">
 @endsection
 @include('layouts.partials._head')
 <body>
@@ -97,7 +97,7 @@
     </div>
 </div>
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="{{ asset('js/app.js', env('APP_USE_HTTPS')) }}" defer></script>
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>

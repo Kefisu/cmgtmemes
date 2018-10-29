@@ -10,19 +10,24 @@ class PagesController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy('id' , 'desc')->get()->load('tags');
+        // Select all posts and paginate
+        $posts = Post::with('tags')->orderBy('id', 'desc')->paginate(10);
+        // Select all featured posts
+        $featured = Post::with('tags')->orderBy('id', 'desc')->where('featured', 1)->paginate(2);
 
-            $random = $posts->where('featured', 1)->all();
-            if (count($random) != 0):
-                $random = $posts->where('featured', 1)->random(1)->first();
-            else:
-                $random = null;
-            endif;
+        // Select random posts
+        $random = $posts->where('featured', 1)->all();
+        if (count($random) != 0):
+            $random = $posts->where('featured', 1)->random(1)->first();
+        else:
+            $random = null;
+        endif;
 
         // Get all posts and associated tags
         $data = [
             'header' => 'red',
             'posts' => $posts,
+            'featured' => $featured,
             'tags' => Tag::all(),
             'randomHeader' => $random
         ];
@@ -34,10 +39,11 @@ class PagesController extends Controller
             ->header('Cache-Control', 'max-age=86400');
     }
 
-    public function privacy() {
+    public function privacy()
+    {
 
         $data = [
-          'randomHeader' => null,
+            'randomHeader' => null,
             'title' => 'Privacyverklaring'
         ];
 

@@ -44,7 +44,5 @@ Route::middleware('optimizeImages')->group(function () {
     Route::get('/search', 'SearchController@index');
     Route::post('/search', 'SearchController@index');
     Route::get('/privacy', 'PagesController@privacy')->name('privacy');
-    Route::get('/contact', 'PagesController@contact')->name('privacy');
-
-
+    Route::get('/contact', 'PagesController@contact')->name('contact');
 });
