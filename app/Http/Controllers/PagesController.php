@@ -11,17 +11,9 @@ class PagesController extends Controller
     public function index()
     {
         // Select all posts and paginate
-        $posts = Post::with('tags')->orderBy('id', 'desc')->paginate(10);
+        $posts = Post::with('tags')->orderBy('id', 'desc')->paginate(10, ['*'], 'posts');
         // Select all featured posts
-        $featured = Post::with('tags')->orderBy('id', 'desc')->where('featured', 1)->paginate(2);
-
-        // Select random posts
-        $random = $posts->where('featured', 1)->all();
-        if (count($random) != 0):
-            $random = $posts->where('featured', 1)->random(1)->first();
-        else:
-            $random = null;
-        endif;
+        $featured = Post::with('tags')->orderBy('id', 'desc')->where('featured', 1)->paginate(2, ['*'], 'featured');
 
         // Get all posts and associated tags
         $data = [
@@ -29,7 +21,7 @@ class PagesController extends Controller
             'posts' => $posts,
             'featured' => $featured,
             'tags' => Tag::all(),
-            'randomHeader' => $random
+            'randomHeader' => Post::randomPost()
         ];
 
         // Return view with all posts & tags

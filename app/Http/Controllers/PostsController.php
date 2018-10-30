@@ -25,17 +25,10 @@ class PostsController extends Controller
     {
             $posts = Post::orderBy('id' , 'desc')->get()->load('tags');
 
-            $random = $posts->where('featured', 1)->all();
-            if (count($random) != 0):
-                $random = $posts->where('featured', 1)->random(1)->first();
-            else:
-                $random = null;
-            endif;
-
         $data = [
             'header' => 'white',
             'title' => 'Upload meme',
-            'randomHeader' => $random
+            'randomHeader' => Post::randomPost()
         ];
 
         return view('app.posts.create')->with($data);
@@ -137,20 +130,12 @@ class PostsController extends Controller
      */
     public function edit($title)
     {
-        $posts = Post::orderBy('id' , 'desc')->get()->load('tags');
         $post = Post::where('slug', $title)->first()->load('tags');
-
-        $random = $posts->where('featured', 1)->all();
-        if (count($random) != 0):
-            $random = $posts->where('featured', 1)->random(1)->first();
-        else:
-            $random = null;
-        endif;
 
         $data = [
             'header' => 'white',
-            'title' => 'Upload meme',
-            'randomHeader' => $random,
+            'title' => 'Edit post',
+            'randomHeader' => $post,
             'post' => $post
         ];
 

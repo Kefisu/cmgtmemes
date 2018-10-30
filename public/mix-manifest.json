@@ -1,5 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/sw_cache.js": "/js/sw_cache.js",
+    "/css/app.css": "/css/app.css",
     "/css/dashboard.css": "/css/dashboard.css",
     "/css/auth.css": "/css/auth.css"
 }

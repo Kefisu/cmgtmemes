@@ -18,4 +18,14 @@ class Post extends Model
 
         return $array;
     }
+
+    public static function randomPost() {
+        // Get random featured post
+        $posts = Post::orderBy('id' , 'desc')->where('featured', 1)->get();
+        if (count($posts) != 0):
+            return $posts->random(1)->first();
+        else:
+           return null;
+        endif;
+    }
 }

@@ -6,6 +6,16 @@
 
 require('./bootstrap');
 
+if (navigator.serviceWorker !== 'undefined') {
+    console.log('Service Worker: Supported');
+    window.addEventListener('load', () => {
+        navigator.serviceWorker
+            .register('/js/sw_cache.js')
+            .then(reg => console.log('Service Worker: Registered'))
+            .catch(err => console.log(`Service worker: Error: ${err}`))
+    })
+}
+
 window.Vue = require('vue');
 
 /**

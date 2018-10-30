@@ -13896,6 +13896,17 @@ module.exports = __webpack_require__(45);
 
 __webpack_require__(13);
 
+if (navigator.serviceWorker !== 'undefined') {
+    console.log('Service Worker: Supported');
+    window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/js/sw_cache.js').then(function (reg) {
+            return console.log('Service Worker: Registered');
+        }).catch(function (err) {
+            return console.log('Service worker: Error: ' + err);
+        });
+    });
+}
+
 window.Vue = __webpack_require__(36);
 
 /**
@@ -47463,7 +47474,7 @@ if (false) {
 /* 43 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: ModuleBuildError: Module build failed: \r\nundefined\r\n                           ^\r\n      Undefined variable: \"$z-depth-1\".\r\n      in D:\\development\\cmgtmemes\\resources\\sass\\app.scss (line 511, column 29)\n    at runLoaders (D:\\development\\cmgtmemes\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at D:\\development\\cmgtmemes\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at D:\\development\\cmgtmemes\\node_modules\\loader-runner\\lib\\LoaderRunner.js:230:18\n    at context.callback (D:\\development\\cmgtmemes\\node_modules\\loader-runner\\lib\\LoaderRunner.js:111:13)\n    at Object.asyncSassJobQueue.push [as callback] (D:\\development\\cmgtmemes\\node_modules\\sass-loader\\lib\\loader.js:55:13)\n    at Object.done [as callback] (D:\\development\\cmgtmemes\\node_modules\\neo-async\\async.js:7974:18)\n    at options.error (D:\\development\\cmgtmemes\\node_modules\\node-sass\\lib\\index.js:294:32)");
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 44 */

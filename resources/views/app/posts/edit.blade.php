@@ -13,36 +13,35 @@
         <div class="container p-0">
             {!! Form::open(['action' => 'PostsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
             <div class="form-group">
-                <label for="title">Titel</label>
+                {{ Form::label('title', 'Titel') }}
                 <br/>
-                <input type="text" id="title" name="title" class="full-width required" value="{{ $post->title }}">
+                {{ Form::text('title', $post->title, ['id' => 'title', 'class' => 'full-width required']) }}
             </div>
             <div class="form-group">
-                <label for="author">Naam</label>
+                {{ Form::label('author', 'Naam') }}
                 <br/>
                 <span class="explanation">Jouw eigen naam, leeg is anoniem</span>
                 <br/>
-                <input type="text" id="author" name="author" class="full-width required" value="{{ $post->author }}">
+                {{ Form::text('author', $post->author, ['id' => 'author', 'class' => 'full-width required']) }}
             </div>
             <div class="form-group">
-                <label for="year">Jaar</label>
+                {{ Form::label('year', 'Jaar') }}
                 <br/>
-                <input type="number" id="year" name="year" class="full-width required" min="1" max="4" value="{{ $post->year }}">
+                {{ Form::number('year', $post->year, ['min' => 1, 'max' => 4, 'id' => 'year', 'class' => 'full-width required']) }}
             </div>
             <div class="form-group">
-                <label for="tagline">Tagline</label>
+                {{ Form::label('tagline', 'Tagline') }}
                 <br/>
                 <span class="explanation">Een korte regel die je meme beschrijft</span>
                 <br/>
-                <input type="text" id="tagline" name="tagline" class="full-width required" value="{{ $post->tagline }}">
+                {{ Form::text('tagline', $post->tagline, ['id' => 'tagline', 'class' => 'full-width required']) }}
             </div>
             <div class="form-group">
-                <label for="description">Beschrijving</label>
+                {{ Form::label('description', 'Beschrijving') }}
                 <br/>
                 <span class="explanation">Beschrijf in een korte paragraaf waar je meme over gaat.</span>
                 <br/>
-                <textarea name="description" id="description" cols="30" rows="7"
-                          class="full-width required">{{ $post->description }}</textarea>
+                {{ Form::textarea('description', $post->description, ['cols' => 30, 'rows' => 7, 'class' => 'full-width required']) }}
             </div>
             <div class="spacer">
             </div>
