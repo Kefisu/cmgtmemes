@@ -21,12 +21,15 @@ Route::middleware('optimizeImages')->group(function () {
     Route::get('/post/{slug}', 'PostsController@show')->name('showPost');
     Route::get('/upload', 'PostsController@create')->name('upload')->middleware('verified');
     Route::put('/post/featured/{post}', 'PostsController@featured');
-    Route::get('/post/{slug}/edit', 'PostsController@edit');
+    Route::get('/post/{slug}/edit', 'PostsController@edit')->name('editPost');
     Route::resource('posts', 'PostsController');
     // Tag routes
     Route::get('/tag/{slug}', 'TagsController@show');
     Route::get('/tags/get', 'TagsController@get');
-    Route::get('/tag/add/{slug}', 'TagsController@store')->middleware('verified');;
+    Route::get('/tag/add/{slug}', 'TagsController@store')->middleware('verified');
+
+    // Rating routes
+    Route::post('/rating/{id}', 'RatingsController@add');
 
     // Dashboard redirect route
     Route::get('/dashboard', 'DashboardController@index');

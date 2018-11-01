@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
@@ -23,7 +24,7 @@ class PostsController extends Controller
      */
     public function create(Request $request)
     {
-            $posts = Post::orderBy('id' , 'desc')->get()->load('tags');
+        $posts = Post::orderBy('id', 'desc')->get()->load('tags');
 
         $data = [
             'header' => 'white',
@@ -105,17 +106,28 @@ class PostsController extends Controller
     public function show($title, Request $request)
     {
         // Check if user is logged in and has correct role
-        if(!$user = Auth::user())
-        {
+        if (!$user = Auth::user()) {
             $this->admin = false;
         } else {
             $this->admin = $request->user()->authorizeRoles('admin');
         }
 
+        // Get post data
+        $post = Post::where('slug', $title)->first()->load('tags');
+        // Get rating data
+        $ratings = Rating::where('post_id', $post->id)->get();
+        // Determine if user has rated
+        if ($ratings->where('user_id', Auth::user()->id)->count() > 0):
+            $this->rated = true;
+        else:
+            $this->rated = false;
+        endif;
+
         $data = [
-            'post' => Post::where('slug', $title)->first()->load('tags'),
+            'post' => $post,
             'header' => 'white',
-            'admin' => $this->admin
+            'admin' => $this->admin,
+            'rated' => $this->rated
         ];
         $data['header_image'] = $data['post']->meme_image;
 

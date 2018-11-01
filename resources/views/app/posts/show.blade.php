@@ -17,11 +17,12 @@
                     {!! Form::close() !!}
                 @endif
             @endauth
-            <!-- Tagline -->
+
+        <!-- Tagline -->
             <h3>{{ $post->tagline }}</h3>
             <p class="mb-3"><i class="far fa-user"></i> {{ $post->author }} <i
                     class="far fa-clock"></i> {{ $post->created_at }} <i class="far fa-calendar-alt"></i>
-                Jaar {{ $post->year }}</p>
+                Jaar {{ $post->year }} <i class="far fa-star"></i> 0</p>
             @foreach($post->tags as $tag)
                 <div class="tag">
                     <a href="{{ url('tag/' . $tag->name) }}">{{ $tag->name }}</a>
@@ -49,6 +50,23 @@
                         {{ Form::submit('Delete', ['class' => 'button']) }}
                         {!! Form::close() !!}
                     </div>
+                    <div class="float-right mt-3">
+                        <button onclick="location.href='{{ route('editPost', [$post->slug]) }}'">Edit</button>
+                    </div>
+                @else
+                    @if($rated)
+                        <div class="float-right mt-3">
+                            <span>Je kan maar 1 rating per meme geven.</span>
+                        </div>
+                    @else
+                        <div class="float-right mt-3">
+                            {!! Form::open(['action' => ['RatingsController@add', $post->id],'method' => 'POST', 'class' => 'form-inline']) !!}
+                            {{ Form::number('rating', '', ['min' => 1, 'max' => 10, 'class' => 'rating-input', 'required']) }}
+                            {{ Form::submit('Voeg rating toe', ['class' => 'button']) }}
+                            {{ Form::hidden('slug', $post->slug) }}
+                            {!! Form::close() !!}
+                        </div>
+                    @endif
                 @endif
             @endauth
         </div>

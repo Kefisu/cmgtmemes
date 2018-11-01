@@ -11,6 +11,10 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    public function rating() {
+        $this->hasMany('App\Rating');
+    }
+
     use Searchable;
     public function toSearchableArray()
     {
