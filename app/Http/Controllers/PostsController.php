@@ -229,13 +229,15 @@ class PostsController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
         $post = Post::find($id);
 
         // Check for correct user
         if (auth()->user()->id !== $post->user_id) {
-            return redirect('/login')->with('error', 'Unauthorized page');
+            if (!$request->user()->authorizeRoles('admin')) {
+                return redirect('/login')->with('error', 'Unauthorized page');
+            }
         }
 
         if ($post->meme_image != 'noimage.jpg') {
