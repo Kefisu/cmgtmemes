@@ -10744,7 +10744,6 @@ button:hover,
 }
 
 @media (max-width: 800px) {
-  .browser-bg .title,
   .browser-bg .browser {
     margin-left: 20px;
     margin-right: 20px;

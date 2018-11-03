@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Rating;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use App\Post;
 use App\Tag;
 use Illuminate\Support\Facades\Auth;
+use App\http\helpers;
 
 class PostsController extends Controller
 {
@@ -24,12 +24,18 @@ class PostsController extends Controller
      */
     public function create(Request $request)
     {
-        $posts = Post::orderBy('id', 'desc')->get()->load('tags');
+        // Check user status
+        $unlocked = helpers::checkUserStatus();
+        // True if user role admin
+        if ($request->user()->authorizeRoles('admin')) {
+            $unlocked = true;
+        }
 
         $data = [
             'header' => 'white',
             'title' => 'Upload meme',
-            'randomHeader' => Post::randomPost()
+            'randomHeader' => Post::randomPost(),
+            'unlocked' => $unlocked
         ];
 
         return view('app.posts.create')->with($data);
@@ -116,8 +122,13 @@ class PostsController extends Controller
         $post = Post::where('slug', $title)->first()->load('tags');
         // Get rating data
         $ratings = Rating::where('post_id', $post->id)->get();
+
+        $this->rating = $ratings->avg('rating', 1);
+        if ($this->rating == null) :
+            $this->rating = 0;
+        endif;
         // Determine if user has rated
-        if ($ratings->where('user_id', Auth::user()->id)->count() > 0):
+        if (isset(Auth::user()->id) && $ratings->where('user_id', Auth::user()->id)->count() > 0):
             $this->rated = true;
         else:
             $this->rated = false;
@@ -127,7 +138,8 @@ class PostsController extends Controller
             'post' => $post,
             'header' => 'white',
             'admin' => $this->admin,
-            'rated' => $this->rated
+            'rated' => $this->rated,
+            'rating' => $this->rating
         ];
         $data['header_image'] = $data['post']->meme_image;
 
@@ -143,6 +155,10 @@ class PostsController extends Controller
     public function edit($title)
     {
         $post = Post::where('slug', $title)->first()->load('tags');
+
+        if ($post->user_id !== Auth::user()->id) {
+            return redirect(url('/post', $title))->with('error', 'Geen toegang tot deze pagina');
+        }
 
         $data = [
             'header' => 'white',
@@ -163,7 +179,46 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'author' => 'nullable',
+            'year' => 'required',
+            'tagline' => 'required',
+            'description' => 'required',
+            'file' => 'image|nullable'
+        ]);
+        // Handle author
+        if (empty($request->input('author'))) {
+            $this->author = 'Annoniem';
+        } else {
+            $this->author = $request->input('author');
+        }
+
+        $post = Post::find($id);
+
+        $post->title = strip_tags($request->input('title'));
+        $post->author = strip_tags($this->author);
+        $post->year = strip_tags($request->input('year'));
+        $post->tagline = strip_tags($request->input('tagline'));
+        $post->description = strip_tags($request->input('description'));
+        $post->user_id = auth()->user()->id;
+        $post->slug = strip_tags(strtolower(str_replace(' ', '-', $request->input('title'))));
+        $post->save();
+
+        $this->post = collect($post);
+
+        if (!empty($request->input('tags'))) :
+            foreach ($request->input('tags') as $tag) :
+                if (!$this->post->contains($tag)) :
+                    $post->tags()->attach($tag);
+                endif;
+            endforeach;
+        endif;
+        // Brute force algolia update
+        $post->save();
+
+
+        return redirect('/post/' . $post->slug)->with('success', 'Meme bewerkt');
     }
 
     /**

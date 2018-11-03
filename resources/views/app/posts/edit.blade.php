@@ -11,7 +11,7 @@
         <div class="spacer">
         </div>
         <div class="container p-0">
-            {!! Form::open(['action' => 'PostsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+            {!! Form::open(['action' => ['PostsController@update', $post->id], 'method' => 'put', 'enctype' => 'multipart/form-data']) !!}
             <div class="form-group">
                 {{ Form::label('title', 'Titel') }}
                 <br/>
@@ -60,9 +60,10 @@
                 <span class="explanation">Het is niet mogelijk de meme afbeelding te veranderen.</span>
                 <br/>
             </div>
+
             <div class="form-group">
                 <p>Heb je alles goed ingevuld? Klik dan op de knop om je meme te bewerken.</p>
-                <button type="submit" name="submit">Upload</button>
+                <button type="submit" name="submit">Bewerk</button>
             </div>
             {!! Form::close() !!}
         </div>

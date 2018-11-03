@@ -22,7 +22,7 @@
             <h3>{{ $post->tagline }}</h3>
             <p class="mb-3"><i class="far fa-user"></i> {{ $post->author }} <i
                     class="far fa-clock"></i> {{ $post->created_at }} <i class="far fa-calendar-alt"></i>
-                Jaar {{ $post->year }} <i class="far fa-star"></i> 0</p>
+                Jaar {{ $post->year }} <i class="far fa-star"></i> {{ $rating }}</p>
             @foreach($post->tags as $tag)
                 <div class="tag">
                     <a href="{{ url('tag/' . $tag->name) }}">{{ $tag->name }}</a>

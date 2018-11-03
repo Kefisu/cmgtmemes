@@ -7,29 +7,33 @@ use Laravel\Scout\Searchable;
 
 class Post extends Model
 {
-    public function tags() {
+    public function tags()
+    {
         return $this->belongsToMany(Tag::class);
     }
 
-    public function rating() {
-        $this->hasMany('App\Rating');
+    public function ratings()
+    {
+        return $this->hasMany('App\Rating');
     }
 
     use Searchable;
+
     public function toSearchableArray()
     {
-       $array = $this->load('tags')->toArray();
+        $array = $this->load('tags')->toArray();
 
         return $array;
     }
 
-    public static function randomPost() {
+    public static function randomPost()
+    {
         // Get random featured post
-        $posts = Post::orderBy('id' , 'desc')->where('featured', 1)->get();
+        $posts = Post::orderBy('id', 'desc')->where('featured', 1)->get();
         if (count($posts) != 0):
             return $posts->random(1)->first();
         else:
-           return null;
+            return null;
         endif;
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Tag;
+use App\Rating;
+use Illuminate\Support\Facades\DB;
 
 class PagesController extends Controller
 {
@@ -24,8 +26,6 @@ class PagesController extends Controller
             'randomHeader' => Post::randomPost()
         ];
 
-        // Return view with all posts & tags
-//        return view('app.index')->with($data);
         return response()
             ->view('app.index', $data)
             ->header('Cache-Control', 'max-age=86400');

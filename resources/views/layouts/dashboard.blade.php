@@ -25,7 +25,8 @@
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('admin') || Request::is('user') ? 'active' : '' }}" href="@isset($admin) @if($admin == 1){{ url('/admin') }}@else{{ url('/user') }}@endif @endisset">
+                        <a class="nav-link {{ Request::is('admin') || Request::is('user') ? 'active' : '' }}"
+                           href="@isset($admin) @if($admin == 1){{ url('/admin') }}@else{{ url('/user') }}@endif @endisset">
                             <span data-feather="home"></span>
                             Dashboard
                         </a>
@@ -37,18 +38,20 @@
                 </h6>
                 <ul class="nav flex-column mb-2">
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('admin/account') || Request::is('user/account') ? 'active' : '' }}" href="{{ url('/admin/account') }}">
+                        <a class="nav-link {{ Request::is('admin/account') || Request::is('user/account') ? 'active' : '' }}"
+                           href="{{ url('/admin/account') }}">
                             <span data-feather="book-open"></span>
-                            Account overview
+                            Edit account
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('admin/account/update') || Request::is('user/account/update') ? 'active' : '' }}"
-                           href="@isset($admin) @if($admin == 1){{ url('/admin/account/update') }}@else{{ url('/user/account/update') }}@endif @endisset">
-                            <span data-feather="settings"></span>
-                            Update account
-                        </a>
-                    </li>
+                    @if(Request::is('admin/account') || Request::is('user/account'))
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="modal" data-target="#deleteAccountModel">
+                                <span data-feather="settings"></span>
+                                Delete account
+                            </a>
+                        </li>
+                    @endif
                 </ul>
                 @isset($admin)
                     @if($admin == 1)
@@ -57,7 +60,8 @@
                         </h6>
                         <ul class="nav flex-column mb-2">
                             <li class="nav-item">
-                                <a class="nav-link {{ Request::is('admin/analytics') || Request::is('user/analytics') ? 'active' : '' }}" href="{{ route('analytics') }}">
+                                <a class="nav-link {{ Request::is('admin/analytics') || Request::is('user/analytics') ? 'active' : '' }}"
+                                   href="{{ route('analytics') }}">
                                     <span data-feather="activity"></span>
                                     Site statistics
                                 </a>
@@ -96,12 +100,36 @@
         </main>
     </div>
 </div>
+@if(Request::is('admin/account') || Request::is('user/account'))
+    <!-- Delete account modal -->
+    <div class="modal fade" id="deleteAccountModel" tabindex="1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete account?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>This options will delete your account. Are you sure? This is irreversible</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger">Yes</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
 <!-- Scripts -->
 <script src="{{ asset('js/app.js', env('APP_USE_HTTPS')) }}" defer></script>
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>
-    feather.replace()
+    feather.replace();
+
 </script>
 </body>
 </html>

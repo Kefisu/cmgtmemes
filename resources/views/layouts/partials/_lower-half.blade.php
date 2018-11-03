@@ -9,11 +9,9 @@
             <h3>Creative Media and Game Technologies</h3>
             <div class="item"><a href="https://cmgt.hr.nl/#/information/about">Studeren bij CMGT</a></div>
             <div class="item"><a href="https://cmgt.hr.nl/#/information/students">Studenten over CMGT</a></div>
-            <div class="item"><a href="">Curriculum</a></div>
             <div class="item"><a href="https://cmgt.hr.nl/#/home">CMGT Showcase</a></div>
             <div class="item"><a href="https://cmgt.hr.nl/#/information/manifesto">Manifesto</a></div>
-            <div class="item"><a href="">Alumni</a></div>
-            <div class="item"><a href="">Instagram</a></div>
+            <div class="item"><a href="https://www.instagram.com/cmgtmemes/">Instagram</a></div>
             <div class="item"><a href="{{ route('upload') }}">Upload meme</a></div>
         </div>
         <div class="verticalspacer">
@@ -27,7 +25,6 @@
                 <div class="item"><a href="https://hint.hr.nl">HINT</a></div>
                 <div class="item"><a href="https://lms.hr.nl">CUMLAUDE</a></div>
                 <div class="item"><a href="">GitHub</a></div>
-                <div class="item"><a href="">Stadslab</a></div>
                 <div class="item"><a href="{{ url('contact') }}">Contact</a></div>
                 <div class="item"><a href="{{ url('privacy') }}">Privacy</a></div>
             </div>

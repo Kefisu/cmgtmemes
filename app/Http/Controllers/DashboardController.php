@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Post;
 use App\Tag;
+use App\Rating;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -104,7 +105,8 @@ class DashboardController extends Controller
         $data = [
             'posts' => $posts,
             'title' => 'Dashboard',
-            'admin' => 0
+            'admin' => 0,
+            'unlocked' => Rating::where('user_id', Auth::user()->id)->count()
         ];
 
         return view('dashboard.user.index')->with($data);
@@ -122,7 +124,8 @@ class DashboardController extends Controller
 
         $data = [
             'title' => 'Account',
-            'admin' => $admin
+            'admin' => $admin,
+            'account' => User::find(Auth::user()->id)
         ];
 
         return view('dashboard.account.index')->with($data);

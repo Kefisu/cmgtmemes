@@ -26,7 +26,13 @@
                                 No
                             @endif
                         </td>
-                        <td>No</td>
+                        <td>
+                            @if($user->unlocked !== null && $user->unlocked == 1)
+                                Yes
+                            @else
+                                No
+                            @endif
+                        </td>
                         <td>{{ $user->created_at }}</td>
                     </tr>
                 @endforeach
