@@ -42,18 +42,12 @@ class TagsController extends Controller
      */
     public function show($tag)
     {
-        $posts = Post::orderBy('id' , 'desc')->get()->load('tags');
-        $random = $posts->where('featured', 1)->all();
-        if (count($random) != 0):
-            $random = $posts->where('featured', 1)->random(1)->first();
-        else:
-            $random = null;
-        endif;
+        $tags = Tag::with('posts')->where('name', $tag)->paginate(10, ['*'], 'posts');
 
         $data = [
             'header' => 'white',
-            'posts' => Tag::where('name', $tag)->paginate(12)->load('posts'),
-            'randomHeader' => $random
+            'posts' => $tags,
+            'randomHeader' => Post::randomPost()
         ];
 
         return view('app.tag.show')->with($data);

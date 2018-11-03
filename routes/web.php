@@ -20,12 +20,16 @@ Route::middleware('optimizeImages')->group(function () {
     // Post routes
     Route::get('/post/{slug}', 'PostsController@show')->name('showPost');
     Route::get('/upload', 'PostsController@create')->name('upload')->middleware('verified');
-    Route::resource('posts', 'PostsController');
     Route::put('/post/featured/{post}', 'PostsController@featured');
+    Route::get('/post/{slug}/edit', 'PostsController@edit')->name('editPost');
+    Route::resource('posts', 'PostsController');
     // Tag routes
     Route::get('/tag/{slug}', 'TagsController@show');
     Route::get('/tags/get', 'TagsController@get');
-    Route::get('/tag/add/{slug}', 'TagsController@store')->middleware('verified');;
+    Route::get('/tag/add/{slug}', 'TagsController@store')->middleware('verified');
+
+    // Rating routes
+    Route::post('/rating/{id}', 'RatingsController@add');
 
     // Dashboard redirect route
     Route::get('/dashboard', 'DashboardController@index');
@@ -39,8 +43,10 @@ Route::middleware('optimizeImages')->group(function () {
     Route::get('/admin/account', 'DashboardController@account')->name('adminAccount');
     Route::get('/admin/analytics', 'DashboardController@analytics')->name('analytics');
     Route::put('/admin/featured/{post}', 'DashboardController@featured');
+    Route::put('/admin/switchRole/{id}', 'DashboardController@switchRole');
 
     Route::get('/search', 'SearchController@index');
     Route::post('/search', 'SearchController@index');
     Route::get('/privacy', 'PagesController@privacy')->name('privacy');
+    Route::get('/contact', 'PagesController@contact')->name('contact');
 });

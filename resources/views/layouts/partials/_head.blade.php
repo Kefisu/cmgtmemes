@@ -33,7 +33,7 @@
     <meta name="theme-color" content="#ffffff">
 
     <!-- SEO Meta tag -->
-    <meta name="description" content="Op deze website vind je de beste memes en grappen over Creative Media and Game Technologies, CMGT, Rotterdam.">
+    <meta name="description" content="Op deze website, cmgtmemes, vind je de beste memes en grappen over Creative Media and Game Technologies, CMGT, Rotterdam.">
 
     <!-- Styles -->
     @yield('styles')

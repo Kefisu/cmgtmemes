@@ -10,6 +10,7 @@
                     <th>Email</th>
                     <th>Email verified</th>
                     <th>Account unlocked</th>
+                    <th>Admin</th>
                     <th>Created at</th>
                 </tr>
                 </thead>
@@ -26,7 +27,27 @@
                                 No
                             @endif
                         </td>
-                        <td>No</td>
+                        <td>
+                            @if($user->unlocked !== null && $user->unlocked == 1)
+                                Yes
+                            @else
+                                No
+                            @endif
+                        </td>
+                        <td>
+                            @isset($admin)
+                                @if($admin !== false)
+                                    {!! Form::open(['action' => ['DashboardController@switchRole', $user->id], 'method' => 'put', 'id' => 'featuredForm']) !!}
+                                    <label class="bs-switch">
+                                        <input type="checkbox" name="featured" id="featured" value="1"
+                                               onclick="submit()"
+                                               @if($user->roles->first()->pivot->role_id == 2) checked @endif @if($user->id == $thisUser) disabled="disabled" @endif>
+                                        <span class="slider round"></span>
+                                    </label>
+                                    {!! Form::close() !!}
+                                @endif
+                            @endisset
+                        </td>
                         <td>{{ $user->created_at }}</td>
                     </tr>
                 @endforeach

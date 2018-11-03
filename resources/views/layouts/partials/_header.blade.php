@@ -2,7 +2,7 @@
 <div class="container p-0" id="nav">
     <a href="{{ route('homepage') }}">
         <div class="logo">
-            <img src="https://cmgt.hr.nl/./images/hr_logo.svg " alt="hr_logo">
+            <img src="{{ asset('/svg/hr_logo.svg') }}" alt="hr_logo">
             <h3 class="white-text mt-2">CREATIVE MEDIA AND GAME TECHNOLOGIES</h3>
         </div>
     </a>
@@ -24,7 +24,7 @@
 <!-- ./Navigation -->
 
 <section class="banner-bg"
-         style="background-image: url(@if(isset($header_image)) '{{ asset('/storage/uploads/' . $header_image) }}'
+         style="background-image: url('https://cmgt.hr.nl/./images/overlay.svg'), url(@if(isset($header_image)) '{{ asset('/storage/uploads/' . $header_image) }}'
          @elseif($randomHeader != null)'{{ asset('/storage/uploads/' . $randomHeader->meme_image) }}'@else {{ asset('/storage/img/noimage.jpg') }}
          @endif);">
     <svg viewBox="0 0 1000 70" width="1000vw" height="70px" preserveAspectRatio="none" class="poly">

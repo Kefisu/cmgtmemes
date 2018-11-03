@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Post;
 use App\Tag;
+use App\Rating;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -48,9 +49,10 @@ class DashboardController extends Controller
 
         $data = [
             'posts' => Post::orderBy('id', 'desc')->paginate(10),
-            'users' => User::paginate(10),
+            'users' => User::with('roles')->paginate(10),
             'title' => 'Dashboard',
-            'admin' => $admin
+            'admin' => $admin,
+            'thisUser' => Auth::user()->id
         ];
 
         return view('dashboard.admin.index')->with($data);
@@ -92,14 +94,20 @@ class DashboardController extends Controller
 
     // User dashboard funcions
 
-    public function user()
+    public function user(Request $request)
     {
+        // Check if user is admin
+        if (!$request->user()->authorizeRoles('user')) {
+            return redirect(url('/admin'));
+        }
+
         $posts = Post::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(10);
 
         $data = [
             'posts' => $posts,
             'title' => 'Dashboard',
-            'admin' => 0
+            'admin' => 0,
+            'unlocked' => Rating::where('user_id', Auth::user()->id)->count()
         ];
 
         return view('dashboard.user.index')->with($data);
@@ -117,9 +125,24 @@ class DashboardController extends Controller
 
         $data = [
             'title' => 'Account',
-            'admin' => $admin
+            'admin' => $admin,
+            'account' => User::find(Auth::user()->id)
         ];
 
         return view('dashboard.account.index')->with($data);
+    }
+
+    public function switchRole($id)
+    {
+        $user = User::with('roles')->where('id', $id)->get()->first()->roles->first()->pivot;
+        if ($user->role_id == 1) :
+            $user->role_id = 2;
+            $user->save();
+        elseif ($user->role_id == 2) :
+            $user->role_id = 1;
+            $user->save();
+        endif;
+
+        return redirect(url('/admin'))->with('success', 'User role switched');
     }
 }
