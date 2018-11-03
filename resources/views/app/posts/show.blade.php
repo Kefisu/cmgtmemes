@@ -43,7 +43,7 @@
                 <button class="mt-3">Terug naar showcase</button>
             </a>
             @auth
-                @if(Auth::user()->id == $post->user_id)
+                @if(Auth::user()->id == $post->user_id || $admin !== false)
                     <div class="float-right mt-3">
                         {!! Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'POST']) !!}
                         {{ Form::hidden('_method', 'DELETE') }}

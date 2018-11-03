@@ -152,12 +152,14 @@ class PostsController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($title)
+    public function edit($title, Request $request)
     {
         $post = Post::where('slug', $title)->first()->load('tags');
 
         if ($post->user_id !== Auth::user()->id) {
-            return redirect(url('/post', $title))->with('error', 'Geen toegang tot deze pagina');
+            if (!$request->user()->authorizeRoles('admin')) {
+                return redirect(url('/post', $title))->with('error', 'Geen toegang tot deze pagina');
+            }
         }
 
         $data = [
