@@ -49,9 +49,10 @@ class DashboardController extends Controller
 
         $data = [
             'posts' => Post::orderBy('id', 'desc')->paginate(10),
-            'users' => User::paginate(10),
+            'users' => User::with('roles')->paginate(10),
             'title' => 'Dashboard',
-            'admin' => $admin
+            'admin' => $admin,
+            'thisUser' => Auth::user()->id
         ];
 
         return view('dashboard.admin.index')->with($data);
@@ -129,5 +130,19 @@ class DashboardController extends Controller
         ];
 
         return view('dashboard.account.index')->with($data);
+    }
+
+    public function switchRole($id)
+    {
+        $user = User::with('roles')->where('id', $id)->get()->first()->roles->first()->pivot;
+        if ($user->role_id == 1) :
+            $user->role_id = 2;
+            $user->save();
+        elseif ($user->role_id == 2) :
+            $user->role_id = 1;
+            $user->save();
+        endif;
+
+        return redirect(url('/admin'))->with('success', 'User role switched');
     }
 }

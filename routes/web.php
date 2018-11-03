@@ -43,6 +43,7 @@ Route::middleware('optimizeImages')->group(function () {
     Route::get('/admin/account', 'DashboardController@account')->name('adminAccount');
     Route::get('/admin/analytics', 'DashboardController@analytics')->name('analytics');
     Route::put('/admin/featured/{post}', 'DashboardController@featured');
+    Route::put('/admin/switchRole/{id}', 'DashboardController@switchRole');
 
     Route::get('/search', 'SearchController@index');
     Route::post('/search', 'SearchController@index');
