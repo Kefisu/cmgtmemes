@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Post;
 use App\Tag;
 use Illuminate\Support\Facades\Auth;
-use App\http\helpers;
+use App\Http\Helpers;
 
 class PostsController extends Controller
 {

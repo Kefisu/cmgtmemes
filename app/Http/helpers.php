@@ -1,6 +1,6 @@
 <?php
 
-namespace App\http;
+namespace App\Http;
 
 use App\Rating;
 use Illuminate\Support\Facades\Auth;
